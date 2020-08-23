@@ -1,0 +1,899 @@
+#pragma once
+
+// Description: C++18 Public object interface for CFBam.
+
+/*
+ *	org.msscf.msscf.CFBam
+ *
+ *	Copyright (c) 2020 Mark Stephen Sobkow
+ *	
+ *	MSS Code Factory CFBam 2.13 Business Application Model
+ *	
+ *	Copyright 2020 Mark Stephen Sobkow
+ *	
+ *		This file is part of MSS Code Factory.
+ *	
+ *		MSS Code Factory is available under dual commercial license from Mark Stephen
+ *		Sobkow, or under the terms of the GNU General Public License, Version 3
+ *		or later.
+ *	
+ *	    MSS Code Factory is free software: you can redistribute it and/or modify
+ *	    it under the terms of the GNU General Public License as published by
+ *	    the Free Software Foundation, either version 3 of the License, or
+ *	    (at your option) any later version.
+ *	
+ *	    MSS Code Factory is distributed in the hope that it will be useful,
+ *	    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	    GNU General Public License for more details.
+ *	
+ *	    You should have received a copy of the GNU General Public License
+ *	    along with MSS Code Factory.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	Donations to support MSS Code Factory can be made at
+ *	https://www.paypal.com/paypalme2/MarkSobkow
+ *	
+ *	Please contact Mark Stephen Sobkow at msobkow@sasktel.net for commercial licensing.
+ *
+ *	Manufactured by MSS Code Factory 2.12
+ */
+
+#include <cfbam/ICFBamPublic.hpp>
+
+#include <cfsecobj/ICFSecObjPublic.hpp>
+#include <cfintobj/ICFIntObjPublic.hpp>
+
+namespace cfbam {
+	class ICFBamSchemaObj;
+	class ICFBamAtomObj;
+	class ICFBamAtomEditObj;
+	class ICFBamAtomTableObj;
+	class ICFBamBlobColObj;
+	class ICFBamBlobColEditObj;
+	class ICFBamBlobColTableObj;
+	class ICFBamBlobDefObj;
+	class ICFBamBlobDefEditObj;
+	class ICFBamBlobDefTableObj;
+	class ICFBamBlobTypeObj;
+	class ICFBamBlobTypeEditObj;
+	class ICFBamBlobTypeTableObj;
+	class ICFBamBoolColObj;
+	class ICFBamBoolColEditObj;
+	class ICFBamBoolColTableObj;
+	class ICFBamBoolDefObj;
+	class ICFBamBoolDefEditObj;
+	class ICFBamBoolDefTableObj;
+	class ICFBamBoolTypeObj;
+	class ICFBamBoolTypeEditObj;
+	class ICFBamBoolTypeTableObj;
+	class ICFBamChainObj;
+	class ICFBamChainEditObj;
+	class ICFBamChainTableObj;
+	class ICFBamClearDepObj;
+	class ICFBamClearDepEditObj;
+	class ICFBamClearDepTableObj;
+	class ICFBamClearSubDep1Obj;
+	class ICFBamClearSubDep1EditObj;
+	class ICFBamClearSubDep1TableObj;
+	class ICFBamClearSubDep2Obj;
+	class ICFBamClearSubDep2EditObj;
+	class ICFBamClearSubDep2TableObj;
+	class ICFBamClearSubDep3Obj;
+	class ICFBamClearSubDep3EditObj;
+	class ICFBamClearSubDep3TableObj;
+	class ICFBamClearTopDepObj;
+	class ICFBamClearTopDepEditObj;
+	class ICFBamClearTopDepTableObj;
+	class ICFBamClusterObj;
+	class ICFBamClusterEditObj;
+	class ICFBamClusterTableObj;
+	class ICFBamDateColObj;
+	class ICFBamDateColEditObj;
+	class ICFBamDateColTableObj;
+	class ICFBamDateDefObj;
+	class ICFBamDateDefEditObj;
+	class ICFBamDateDefTableObj;
+	class ICFBamDateTypeObj;
+	class ICFBamDateTypeEditObj;
+	class ICFBamDateTypeTableObj;
+	class ICFBamDelDepObj;
+	class ICFBamDelDepEditObj;
+	class ICFBamDelDepTableObj;
+	class ICFBamDelSubDep1Obj;
+	class ICFBamDelSubDep1EditObj;
+	class ICFBamDelSubDep1TableObj;
+	class ICFBamDelSubDep2Obj;
+	class ICFBamDelSubDep2EditObj;
+	class ICFBamDelSubDep2TableObj;
+	class ICFBamDelSubDep3Obj;
+	class ICFBamDelSubDep3EditObj;
+	class ICFBamDelSubDep3TableObj;
+	class ICFBamDelTopDepObj;
+	class ICFBamDelTopDepEditObj;
+	class ICFBamDelTopDepTableObj;
+	class ICFBamDoubleColObj;
+	class ICFBamDoubleColEditObj;
+	class ICFBamDoubleColTableObj;
+	class ICFBamDoubleDefObj;
+	class ICFBamDoubleDefEditObj;
+	class ICFBamDoubleDefTableObj;
+	class ICFBamDoubleTypeObj;
+	class ICFBamDoubleTypeEditObj;
+	class ICFBamDoubleTypeTableObj;
+	class ICFBamEnumDefObj;
+	class ICFBamEnumDefEditObj;
+	class ICFBamEnumDefTableObj;
+	class ICFBamEnumTagObj;
+	class ICFBamEnumTagEditObj;
+	class ICFBamEnumTagTableObj;
+	class ICFBamEnumTypeObj;
+	class ICFBamEnumTypeEditObj;
+	class ICFBamEnumTypeTableObj;
+	class ICFBamFloatColObj;
+	class ICFBamFloatColEditObj;
+	class ICFBamFloatColTableObj;
+	class ICFBamFloatDefObj;
+	class ICFBamFloatDefEditObj;
+	class ICFBamFloatDefTableObj;
+	class ICFBamFloatTypeObj;
+	class ICFBamFloatTypeEditObj;
+	class ICFBamFloatTypeTableObj;
+	class ICFBamHostNodeObj;
+	class ICFBamHostNodeEditObj;
+	class ICFBamHostNodeTableObj;
+	class ICFBamISOCcyObj;
+	class ICFBamISOCcyEditObj;
+	class ICFBamISOCcyTableObj;
+	class ICFBamISOCtryObj;
+	class ICFBamISOCtryEditObj;
+	class ICFBamISOCtryTableObj;
+	class ICFBamISOCtryCcyObj;
+	class ICFBamISOCtryCcyEditObj;
+	class ICFBamISOCtryCcyTableObj;
+	class ICFBamISOCtryLangObj;
+	class ICFBamISOCtryLangEditObj;
+	class ICFBamISOCtryLangTableObj;
+	class ICFBamISOLangObj;
+	class ICFBamISOLangEditObj;
+	class ICFBamISOLangTableObj;
+	class ICFBamISOTZoneObj;
+	class ICFBamISOTZoneEditObj;
+	class ICFBamISOTZoneTableObj;
+	class ICFBamId16GenObj;
+	class ICFBamId16GenEditObj;
+	class ICFBamId16GenTableObj;
+	class ICFBamId32GenObj;
+	class ICFBamId32GenEditObj;
+	class ICFBamId32GenTableObj;
+	class ICFBamId64GenObj;
+	class ICFBamId64GenEditObj;
+	class ICFBamId64GenTableObj;
+	class ICFBamIndexObj;
+	class ICFBamIndexEditObj;
+	class ICFBamIndexTableObj;
+	class ICFBamIndexColObj;
+	class ICFBamIndexColEditObj;
+	class ICFBamIndexColTableObj;
+	class ICFBamInt16ColObj;
+	class ICFBamInt16ColEditObj;
+	class ICFBamInt16ColTableObj;
+	class ICFBamInt16DefObj;
+	class ICFBamInt16DefEditObj;
+	class ICFBamInt16DefTableObj;
+	class ICFBamInt16TypeObj;
+	class ICFBamInt16TypeEditObj;
+	class ICFBamInt16TypeTableObj;
+	class ICFBamInt32ColObj;
+	class ICFBamInt32ColEditObj;
+	class ICFBamInt32ColTableObj;
+	class ICFBamInt32DefObj;
+	class ICFBamInt32DefEditObj;
+	class ICFBamInt32DefTableObj;
+	class ICFBamInt32TypeObj;
+	class ICFBamInt32TypeEditObj;
+	class ICFBamInt32TypeTableObj;
+	class ICFBamInt64ColObj;
+	class ICFBamInt64ColEditObj;
+	class ICFBamInt64ColTableObj;
+	class ICFBamInt64DefObj;
+	class ICFBamInt64DefEditObj;
+	class ICFBamInt64DefTableObj;
+	class ICFBamInt64TypeObj;
+	class ICFBamInt64TypeEditObj;
+	class ICFBamInt64TypeTableObj;
+	class ICFBamLicenseObj;
+	class ICFBamLicenseEditObj;
+	class ICFBamLicenseTableObj;
+	class ICFBamMajorVersionObj;
+	class ICFBamMajorVersionEditObj;
+	class ICFBamMajorVersionTableObj;
+	class ICFBamMimeTypeObj;
+	class ICFBamMimeTypeEditObj;
+	class ICFBamMimeTypeTableObj;
+	class ICFBamMinorVersionObj;
+	class ICFBamMinorVersionEditObj;
+	class ICFBamMinorVersionTableObj;
+	class ICFBamNmTokenColObj;
+	class ICFBamNmTokenColEditObj;
+	class ICFBamNmTokenColTableObj;
+	class ICFBamNmTokenDefObj;
+	class ICFBamNmTokenDefEditObj;
+	class ICFBamNmTokenDefTableObj;
+	class ICFBamNmTokenTypeObj;
+	class ICFBamNmTokenTypeEditObj;
+	class ICFBamNmTokenTypeTableObj;
+	class ICFBamNmTokensColObj;
+	class ICFBamNmTokensColEditObj;
+	class ICFBamNmTokensColTableObj;
+	class ICFBamNmTokensDefObj;
+	class ICFBamNmTokensDefEditObj;
+	class ICFBamNmTokensDefTableObj;
+	class ICFBamNmTokensTypeObj;
+	class ICFBamNmTokensTypeEditObj;
+	class ICFBamNmTokensTypeTableObj;
+	class ICFBamNumberColObj;
+	class ICFBamNumberColEditObj;
+	class ICFBamNumberColTableObj;
+	class ICFBamNumberDefObj;
+	class ICFBamNumberDefEditObj;
+	class ICFBamNumberDefTableObj;
+	class ICFBamNumberTypeObj;
+	class ICFBamNumberTypeEditObj;
+	class ICFBamNumberTypeTableObj;
+	class ICFBamParamObj;
+	class ICFBamParamEditObj;
+	class ICFBamParamTableObj;
+	class ICFBamPopDepObj;
+	class ICFBamPopDepEditObj;
+	class ICFBamPopDepTableObj;
+	class ICFBamPopSubDep1Obj;
+	class ICFBamPopSubDep1EditObj;
+	class ICFBamPopSubDep1TableObj;
+	class ICFBamPopSubDep2Obj;
+	class ICFBamPopSubDep2EditObj;
+	class ICFBamPopSubDep2TableObj;
+	class ICFBamPopSubDep3Obj;
+	class ICFBamPopSubDep3EditObj;
+	class ICFBamPopSubDep3TableObj;
+	class ICFBamPopTopDepObj;
+	class ICFBamPopTopDepEditObj;
+	class ICFBamPopTopDepTableObj;
+	class ICFBamRelationObj;
+	class ICFBamRelationEditObj;
+	class ICFBamRelationTableObj;
+	class ICFBamRelationColObj;
+	class ICFBamRelationColEditObj;
+	class ICFBamRelationColTableObj;
+	class ICFBamSchemaDefObj;
+	class ICFBamSchemaDefEditObj;
+	class ICFBamSchemaDefTableObj;
+	class ICFBamSchemaRefObj;
+	class ICFBamSchemaRefEditObj;
+	class ICFBamSchemaRefTableObj;
+	class ICFBamScopeObj;
+	class ICFBamScopeEditObj;
+	class ICFBamScopeTableObj;
+	class ICFBamSecAppObj;
+	class ICFBamSecAppEditObj;
+	class ICFBamSecAppTableObj;
+	class ICFBamSecDeviceObj;
+	class ICFBamSecDeviceEditObj;
+	class ICFBamSecDeviceTableObj;
+	class ICFBamSecFormObj;
+	class ICFBamSecFormEditObj;
+	class ICFBamSecFormTableObj;
+	class ICFBamSecGroupObj;
+	class ICFBamSecGroupEditObj;
+	class ICFBamSecGroupTableObj;
+	class ICFBamSecGroupFormObj;
+	class ICFBamSecGroupFormEditObj;
+	class ICFBamSecGroupFormTableObj;
+	class ICFBamSecGrpIncObj;
+	class ICFBamSecGrpIncEditObj;
+	class ICFBamSecGrpIncTableObj;
+	class ICFBamSecGrpMembObj;
+	class ICFBamSecGrpMembEditObj;
+	class ICFBamSecGrpMembTableObj;
+	class ICFBamSecSessionObj;
+	class ICFBamSecSessionEditObj;
+	class ICFBamSecSessionTableObj;
+	class ICFBamSecUserObj;
+	class ICFBamSecUserEditObj;
+	class ICFBamSecUserTableObj;
+	class ICFBamServerListFuncObj;
+	class ICFBamServerListFuncEditObj;
+	class ICFBamServerListFuncTableObj;
+	class ICFBamServerMethodObj;
+	class ICFBamServerMethodEditObj;
+	class ICFBamServerMethodTableObj;
+	class ICFBamServerObjFuncObj;
+	class ICFBamServerObjFuncEditObj;
+	class ICFBamServerObjFuncTableObj;
+	class ICFBamServerProcObj;
+	class ICFBamServerProcEditObj;
+	class ICFBamServerProcTableObj;
+	class ICFBamServiceObj;
+	class ICFBamServiceEditObj;
+	class ICFBamServiceTableObj;
+	class ICFBamServiceTypeObj;
+	class ICFBamServiceTypeEditObj;
+	class ICFBamServiceTypeTableObj;
+	class ICFBamStringColObj;
+	class ICFBamStringColEditObj;
+	class ICFBamStringColTableObj;
+	class ICFBamStringDefObj;
+	class ICFBamStringDefEditObj;
+	class ICFBamStringDefTableObj;
+	class ICFBamStringTypeObj;
+	class ICFBamStringTypeEditObj;
+	class ICFBamStringTypeTableObj;
+	class ICFBamSubProjectObj;
+	class ICFBamSubProjectEditObj;
+	class ICFBamSubProjectTableObj;
+	class ICFBamSysClusterObj;
+	class ICFBamSysClusterEditObj;
+	class ICFBamSysClusterTableObj;
+	class ICFBamTSecGroupObj;
+	class ICFBamTSecGroupEditObj;
+	class ICFBamTSecGroupTableObj;
+	class ICFBamTSecGrpIncObj;
+	class ICFBamTSecGrpIncEditObj;
+	class ICFBamTSecGrpIncTableObj;
+	class ICFBamTSecGrpMembObj;
+	class ICFBamTSecGrpMembEditObj;
+	class ICFBamTSecGrpMembTableObj;
+	class ICFBamTZDateColObj;
+	class ICFBamTZDateColEditObj;
+	class ICFBamTZDateColTableObj;
+	class ICFBamTZDateDefObj;
+	class ICFBamTZDateDefEditObj;
+	class ICFBamTZDateDefTableObj;
+	class ICFBamTZDateTypeObj;
+	class ICFBamTZDateTypeEditObj;
+	class ICFBamTZDateTypeTableObj;
+	class ICFBamTZTimeColObj;
+	class ICFBamTZTimeColEditObj;
+	class ICFBamTZTimeColTableObj;
+	class ICFBamTZTimeDefObj;
+	class ICFBamTZTimeDefEditObj;
+	class ICFBamTZTimeDefTableObj;
+	class ICFBamTZTimeTypeObj;
+	class ICFBamTZTimeTypeEditObj;
+	class ICFBamTZTimeTypeTableObj;
+	class ICFBamTZTimestampColObj;
+	class ICFBamTZTimestampColEditObj;
+	class ICFBamTZTimestampColTableObj;
+	class ICFBamTZTimestampDefObj;
+	class ICFBamTZTimestampDefEditObj;
+	class ICFBamTZTimestampDefTableObj;
+	class ICFBamTZTimestampTypeObj;
+	class ICFBamTZTimestampTypeEditObj;
+	class ICFBamTZTimestampTypeTableObj;
+	class ICFBamTableObj;
+	class ICFBamTableEditObj;
+	class ICFBamTableTableObj;
+	class ICFBamTableColObj;
+	class ICFBamTableColEditObj;
+	class ICFBamTableColTableObj;
+	class ICFBamTenantObj;
+	class ICFBamTenantEditObj;
+	class ICFBamTenantTableObj;
+	class ICFBamTextColObj;
+	class ICFBamTextColEditObj;
+	class ICFBamTextColTableObj;
+	class ICFBamTextDefObj;
+	class ICFBamTextDefEditObj;
+	class ICFBamTextDefTableObj;
+	class ICFBamTextTypeObj;
+	class ICFBamTextTypeEditObj;
+	class ICFBamTextTypeTableObj;
+	class ICFBamTimeColObj;
+	class ICFBamTimeColEditObj;
+	class ICFBamTimeColTableObj;
+	class ICFBamTimeDefObj;
+	class ICFBamTimeDefEditObj;
+	class ICFBamTimeDefTableObj;
+	class ICFBamTimeTypeObj;
+	class ICFBamTimeTypeEditObj;
+	class ICFBamTimeTypeTableObj;
+	class ICFBamTimestampColObj;
+	class ICFBamTimestampColEditObj;
+	class ICFBamTimestampColTableObj;
+	class ICFBamTimestampDefObj;
+	class ICFBamTimestampDefEditObj;
+	class ICFBamTimestampDefTableObj;
+	class ICFBamTimestampTypeObj;
+	class ICFBamTimestampTypeEditObj;
+	class ICFBamTimestampTypeTableObj;
+	class ICFBamTldObj;
+	class ICFBamTldEditObj;
+	class ICFBamTldTableObj;
+	class ICFBamTokenColObj;
+	class ICFBamTokenColEditObj;
+	class ICFBamTokenColTableObj;
+	class ICFBamTokenDefObj;
+	class ICFBamTokenDefEditObj;
+	class ICFBamTokenDefTableObj;
+	class ICFBamTokenTypeObj;
+	class ICFBamTokenTypeEditObj;
+	class ICFBamTokenTypeTableObj;
+	class ICFBamTopDomainObj;
+	class ICFBamTopDomainEditObj;
+	class ICFBamTopDomainTableObj;
+	class ICFBamTopProjectObj;
+	class ICFBamTopProjectEditObj;
+	class ICFBamTopProjectTableObj;
+	class ICFBamUInt16ColObj;
+	class ICFBamUInt16ColEditObj;
+	class ICFBamUInt16ColTableObj;
+	class ICFBamUInt16DefObj;
+	class ICFBamUInt16DefEditObj;
+	class ICFBamUInt16DefTableObj;
+	class ICFBamUInt16TypeObj;
+	class ICFBamUInt16TypeEditObj;
+	class ICFBamUInt16TypeTableObj;
+	class ICFBamUInt32ColObj;
+	class ICFBamUInt32ColEditObj;
+	class ICFBamUInt32ColTableObj;
+	class ICFBamUInt32DefObj;
+	class ICFBamUInt32DefEditObj;
+	class ICFBamUInt32DefTableObj;
+	class ICFBamUInt32TypeObj;
+	class ICFBamUInt32TypeEditObj;
+	class ICFBamUInt32TypeTableObj;
+	class ICFBamUInt64ColObj;
+	class ICFBamUInt64ColEditObj;
+	class ICFBamUInt64ColTableObj;
+	class ICFBamUInt64DefObj;
+	class ICFBamUInt64DefEditObj;
+	class ICFBamUInt64DefTableObj;
+	class ICFBamUInt64TypeObj;
+	class ICFBamUInt64TypeEditObj;
+	class ICFBamUInt64TypeTableObj;
+	class ICFBamURLProtocolObj;
+	class ICFBamURLProtocolEditObj;
+	class ICFBamURLProtocolTableObj;
+	class ICFBamUuidColObj;
+	class ICFBamUuidColEditObj;
+	class ICFBamUuidColTableObj;
+	class ICFBamUuidDefObj;
+	class ICFBamUuidDefEditObj;
+	class ICFBamUuidDefTableObj;
+	class ICFBamUuidGenObj;
+	class ICFBamUuidGenEditObj;
+	class ICFBamUuidGenTableObj;
+	class ICFBamUuidTypeObj;
+	class ICFBamUuidTypeEditObj;
+	class ICFBamUuidTypeTableObj;
+	class ICFBamValueObj;
+	class ICFBamValueEditObj;
+	class ICFBamValueTableObj;
+}
+
+#include <cfbamobj/ICFBamSchemaObj.hpp>
+
+#include <cfbamobj/ICFBamAtomObj.hpp>
+#include <cfbamobj/ICFBamBlobColObj.hpp>
+#include <cfbamobj/ICFBamBlobDefObj.hpp>
+#include <cfbamobj/ICFBamBlobTypeObj.hpp>
+#include <cfbamobj/ICFBamBoolColObj.hpp>
+#include <cfbamobj/ICFBamBoolDefObj.hpp>
+#include <cfbamobj/ICFBamBoolTypeObj.hpp>
+#include <cfbamobj/ICFBamChainObj.hpp>
+#include <cfbamobj/ICFBamClearDepObj.hpp>
+#include <cfbamobj/ICFBamClearSubDep1Obj.hpp>
+#include <cfbamobj/ICFBamClearSubDep2Obj.hpp>
+#include <cfbamobj/ICFBamClearSubDep3Obj.hpp>
+#include <cfbamobj/ICFBamClearTopDepObj.hpp>
+#include <cfbamobj/ICFBamClusterObj.hpp>
+#include <cfbamobj/ICFBamDateColObj.hpp>
+#include <cfbamobj/ICFBamDateDefObj.hpp>
+#include <cfbamobj/ICFBamDateTypeObj.hpp>
+#include <cfbamobj/ICFBamDelDepObj.hpp>
+#include <cfbamobj/ICFBamDelSubDep1Obj.hpp>
+#include <cfbamobj/ICFBamDelSubDep2Obj.hpp>
+#include <cfbamobj/ICFBamDelSubDep3Obj.hpp>
+#include <cfbamobj/ICFBamDelTopDepObj.hpp>
+#include <cfbamobj/ICFBamDoubleColObj.hpp>
+#include <cfbamobj/ICFBamDoubleDefObj.hpp>
+#include <cfbamobj/ICFBamDoubleTypeObj.hpp>
+#include <cfbamobj/ICFBamEnumDefObj.hpp>
+#include <cfbamobj/ICFBamEnumTagObj.hpp>
+#include <cfbamobj/ICFBamEnumTypeObj.hpp>
+#include <cfbamobj/ICFBamFloatColObj.hpp>
+#include <cfbamobj/ICFBamFloatDefObj.hpp>
+#include <cfbamobj/ICFBamFloatTypeObj.hpp>
+#include <cfbamobj/ICFBamHostNodeObj.hpp>
+#include <cfbamobj/ICFBamISOCcyObj.hpp>
+#include <cfbamobj/ICFBamISOCtryObj.hpp>
+#include <cfbamobj/ICFBamISOCtryCcyObj.hpp>
+#include <cfbamobj/ICFBamISOCtryLangObj.hpp>
+#include <cfbamobj/ICFBamISOLangObj.hpp>
+#include <cfbamobj/ICFBamISOTZoneObj.hpp>
+#include <cfbamobj/ICFBamId16GenObj.hpp>
+#include <cfbamobj/ICFBamId32GenObj.hpp>
+#include <cfbamobj/ICFBamId64GenObj.hpp>
+#include <cfbamobj/ICFBamIndexObj.hpp>
+#include <cfbamobj/ICFBamIndexColObj.hpp>
+#include <cfbamobj/ICFBamInt16ColObj.hpp>
+#include <cfbamobj/ICFBamInt16DefObj.hpp>
+#include <cfbamobj/ICFBamInt16TypeObj.hpp>
+#include <cfbamobj/ICFBamInt32ColObj.hpp>
+#include <cfbamobj/ICFBamInt32DefObj.hpp>
+#include <cfbamobj/ICFBamInt32TypeObj.hpp>
+#include <cfbamobj/ICFBamInt64ColObj.hpp>
+#include <cfbamobj/ICFBamInt64DefObj.hpp>
+#include <cfbamobj/ICFBamInt64TypeObj.hpp>
+#include <cfbamobj/ICFBamLicenseObj.hpp>
+#include <cfbamobj/ICFBamMajorVersionObj.hpp>
+#include <cfbamobj/ICFBamMimeTypeObj.hpp>
+#include <cfbamobj/ICFBamMinorVersionObj.hpp>
+#include <cfbamobj/ICFBamNmTokenColObj.hpp>
+#include <cfbamobj/ICFBamNmTokenDefObj.hpp>
+#include <cfbamobj/ICFBamNmTokenTypeObj.hpp>
+#include <cfbamobj/ICFBamNmTokensColObj.hpp>
+#include <cfbamobj/ICFBamNmTokensDefObj.hpp>
+#include <cfbamobj/ICFBamNmTokensTypeObj.hpp>
+#include <cfbamobj/ICFBamNumberColObj.hpp>
+#include <cfbamobj/ICFBamNumberDefObj.hpp>
+#include <cfbamobj/ICFBamNumberTypeObj.hpp>
+#include <cfbamobj/ICFBamParamObj.hpp>
+#include <cfbamobj/ICFBamPopDepObj.hpp>
+#include <cfbamobj/ICFBamPopSubDep1Obj.hpp>
+#include <cfbamobj/ICFBamPopSubDep2Obj.hpp>
+#include <cfbamobj/ICFBamPopSubDep3Obj.hpp>
+#include <cfbamobj/ICFBamPopTopDepObj.hpp>
+#include <cfbamobj/ICFBamRelationObj.hpp>
+#include <cfbamobj/ICFBamRelationColObj.hpp>
+#include <cfbamobj/ICFBamSchemaDefObj.hpp>
+#include <cfbamobj/ICFBamSchemaRefObj.hpp>
+#include <cfbamobj/ICFBamScopeObj.hpp>
+#include <cfbamobj/ICFBamSecAppObj.hpp>
+#include <cfbamobj/ICFBamSecDeviceObj.hpp>
+#include <cfbamobj/ICFBamSecFormObj.hpp>
+#include <cfbamobj/ICFBamSecGroupObj.hpp>
+#include <cfbamobj/ICFBamSecGroupFormObj.hpp>
+#include <cfbamobj/ICFBamSecGrpIncObj.hpp>
+#include <cfbamobj/ICFBamSecGrpMembObj.hpp>
+#include <cfbamobj/ICFBamSecSessionObj.hpp>
+#include <cfbamobj/ICFBamSecUserObj.hpp>
+#include <cfbamobj/ICFBamServerListFuncObj.hpp>
+#include <cfbamobj/ICFBamServerMethodObj.hpp>
+#include <cfbamobj/ICFBamServerObjFuncObj.hpp>
+#include <cfbamobj/ICFBamServerProcObj.hpp>
+#include <cfbamobj/ICFBamServiceObj.hpp>
+#include <cfbamobj/ICFBamServiceTypeObj.hpp>
+#include <cfbamobj/ICFBamStringColObj.hpp>
+#include <cfbamobj/ICFBamStringDefObj.hpp>
+#include <cfbamobj/ICFBamStringTypeObj.hpp>
+#include <cfbamobj/ICFBamSubProjectObj.hpp>
+#include <cfbamobj/ICFBamSysClusterObj.hpp>
+#include <cfbamobj/ICFBamTSecGroupObj.hpp>
+#include <cfbamobj/ICFBamTSecGrpIncObj.hpp>
+#include <cfbamobj/ICFBamTSecGrpMembObj.hpp>
+#include <cfbamobj/ICFBamTZDateColObj.hpp>
+#include <cfbamobj/ICFBamTZDateDefObj.hpp>
+#include <cfbamobj/ICFBamTZDateTypeObj.hpp>
+#include <cfbamobj/ICFBamTZTimeColObj.hpp>
+#include <cfbamobj/ICFBamTZTimeDefObj.hpp>
+#include <cfbamobj/ICFBamTZTimeTypeObj.hpp>
+#include <cfbamobj/ICFBamTZTimestampColObj.hpp>
+#include <cfbamobj/ICFBamTZTimestampDefObj.hpp>
+#include <cfbamobj/ICFBamTZTimestampTypeObj.hpp>
+#include <cfbamobj/ICFBamTableObj.hpp>
+#include <cfbamobj/ICFBamTableColObj.hpp>
+#include <cfbamobj/ICFBamTenantObj.hpp>
+#include <cfbamobj/ICFBamTextColObj.hpp>
+#include <cfbamobj/ICFBamTextDefObj.hpp>
+#include <cfbamobj/ICFBamTextTypeObj.hpp>
+#include <cfbamobj/ICFBamTimeColObj.hpp>
+#include <cfbamobj/ICFBamTimeDefObj.hpp>
+#include <cfbamobj/ICFBamTimeTypeObj.hpp>
+#include <cfbamobj/ICFBamTimestampColObj.hpp>
+#include <cfbamobj/ICFBamTimestampDefObj.hpp>
+#include <cfbamobj/ICFBamTimestampTypeObj.hpp>
+#include <cfbamobj/ICFBamTldObj.hpp>
+#include <cfbamobj/ICFBamTokenColObj.hpp>
+#include <cfbamobj/ICFBamTokenDefObj.hpp>
+#include <cfbamobj/ICFBamTokenTypeObj.hpp>
+#include <cfbamobj/ICFBamTopDomainObj.hpp>
+#include <cfbamobj/ICFBamTopProjectObj.hpp>
+#include <cfbamobj/ICFBamUInt16ColObj.hpp>
+#include <cfbamobj/ICFBamUInt16DefObj.hpp>
+#include <cfbamobj/ICFBamUInt16TypeObj.hpp>
+#include <cfbamobj/ICFBamUInt32ColObj.hpp>
+#include <cfbamobj/ICFBamUInt32DefObj.hpp>
+#include <cfbamobj/ICFBamUInt32TypeObj.hpp>
+#include <cfbamobj/ICFBamUInt64ColObj.hpp>
+#include <cfbamobj/ICFBamUInt64DefObj.hpp>
+#include <cfbamobj/ICFBamUInt64TypeObj.hpp>
+#include <cfbamobj/ICFBamURLProtocolObj.hpp>
+#include <cfbamobj/ICFBamUuidColObj.hpp>
+#include <cfbamobj/ICFBamUuidDefObj.hpp>
+#include <cfbamobj/ICFBamUuidGenObj.hpp>
+#include <cfbamobj/ICFBamUuidTypeObj.hpp>
+#include <cfbamobj/ICFBamValueObj.hpp>
+
+#include <cfbamobj/ICFBamAtomEditObj.hpp>
+#include <cfbamobj/ICFBamBlobColEditObj.hpp>
+#include <cfbamobj/ICFBamBlobDefEditObj.hpp>
+#include <cfbamobj/ICFBamBlobTypeEditObj.hpp>
+#include <cfbamobj/ICFBamBoolColEditObj.hpp>
+#include <cfbamobj/ICFBamBoolDefEditObj.hpp>
+#include <cfbamobj/ICFBamBoolTypeEditObj.hpp>
+#include <cfbamobj/ICFBamChainEditObj.hpp>
+#include <cfbamobj/ICFBamClearDepEditObj.hpp>
+#include <cfbamobj/ICFBamClearSubDep1EditObj.hpp>
+#include <cfbamobj/ICFBamClearSubDep2EditObj.hpp>
+#include <cfbamobj/ICFBamClearSubDep3EditObj.hpp>
+#include <cfbamobj/ICFBamClearTopDepEditObj.hpp>
+#include <cfbamobj/ICFBamClusterEditObj.hpp>
+#include <cfbamobj/ICFBamDateColEditObj.hpp>
+#include <cfbamobj/ICFBamDateDefEditObj.hpp>
+#include <cfbamobj/ICFBamDateTypeEditObj.hpp>
+#include <cfbamobj/ICFBamDelDepEditObj.hpp>
+#include <cfbamobj/ICFBamDelSubDep1EditObj.hpp>
+#include <cfbamobj/ICFBamDelSubDep2EditObj.hpp>
+#include <cfbamobj/ICFBamDelSubDep3EditObj.hpp>
+#include <cfbamobj/ICFBamDelTopDepEditObj.hpp>
+#include <cfbamobj/ICFBamDoubleColEditObj.hpp>
+#include <cfbamobj/ICFBamDoubleDefEditObj.hpp>
+#include <cfbamobj/ICFBamDoubleTypeEditObj.hpp>
+#include <cfbamobj/ICFBamEnumDefEditObj.hpp>
+#include <cfbamobj/ICFBamEnumTagEditObj.hpp>
+#include <cfbamobj/ICFBamEnumTypeEditObj.hpp>
+#include <cfbamobj/ICFBamFloatColEditObj.hpp>
+#include <cfbamobj/ICFBamFloatDefEditObj.hpp>
+#include <cfbamobj/ICFBamFloatTypeEditObj.hpp>
+#include <cfbamobj/ICFBamHostNodeEditObj.hpp>
+#include <cfbamobj/ICFBamISOCcyEditObj.hpp>
+#include <cfbamobj/ICFBamISOCtryEditObj.hpp>
+#include <cfbamobj/ICFBamISOCtryCcyEditObj.hpp>
+#include <cfbamobj/ICFBamISOCtryLangEditObj.hpp>
+#include <cfbamobj/ICFBamISOLangEditObj.hpp>
+#include <cfbamobj/ICFBamISOTZoneEditObj.hpp>
+#include <cfbamobj/ICFBamId16GenEditObj.hpp>
+#include <cfbamobj/ICFBamId32GenEditObj.hpp>
+#include <cfbamobj/ICFBamId64GenEditObj.hpp>
+#include <cfbamobj/ICFBamIndexEditObj.hpp>
+#include <cfbamobj/ICFBamIndexColEditObj.hpp>
+#include <cfbamobj/ICFBamInt16ColEditObj.hpp>
+#include <cfbamobj/ICFBamInt16DefEditObj.hpp>
+#include <cfbamobj/ICFBamInt16TypeEditObj.hpp>
+#include <cfbamobj/ICFBamInt32ColEditObj.hpp>
+#include <cfbamobj/ICFBamInt32DefEditObj.hpp>
+#include <cfbamobj/ICFBamInt32TypeEditObj.hpp>
+#include <cfbamobj/ICFBamInt64ColEditObj.hpp>
+#include <cfbamobj/ICFBamInt64DefEditObj.hpp>
+#include <cfbamobj/ICFBamInt64TypeEditObj.hpp>
+#include <cfbamobj/ICFBamLicenseEditObj.hpp>
+#include <cfbamobj/ICFBamMajorVersionEditObj.hpp>
+#include <cfbamobj/ICFBamMimeTypeEditObj.hpp>
+#include <cfbamobj/ICFBamMinorVersionEditObj.hpp>
+#include <cfbamobj/ICFBamNmTokenColEditObj.hpp>
+#include <cfbamobj/ICFBamNmTokenDefEditObj.hpp>
+#include <cfbamobj/ICFBamNmTokenTypeEditObj.hpp>
+#include <cfbamobj/ICFBamNmTokensColEditObj.hpp>
+#include <cfbamobj/ICFBamNmTokensDefEditObj.hpp>
+#include <cfbamobj/ICFBamNmTokensTypeEditObj.hpp>
+#include <cfbamobj/ICFBamNumberColEditObj.hpp>
+#include <cfbamobj/ICFBamNumberDefEditObj.hpp>
+#include <cfbamobj/ICFBamNumberTypeEditObj.hpp>
+#include <cfbamobj/ICFBamParamEditObj.hpp>
+#include <cfbamobj/ICFBamPopDepEditObj.hpp>
+#include <cfbamobj/ICFBamPopSubDep1EditObj.hpp>
+#include <cfbamobj/ICFBamPopSubDep2EditObj.hpp>
+#include <cfbamobj/ICFBamPopSubDep3EditObj.hpp>
+#include <cfbamobj/ICFBamPopTopDepEditObj.hpp>
+#include <cfbamobj/ICFBamRelationEditObj.hpp>
+#include <cfbamobj/ICFBamRelationColEditObj.hpp>
+#include <cfbamobj/ICFBamSchemaDefEditObj.hpp>
+#include <cfbamobj/ICFBamSchemaRefEditObj.hpp>
+#include <cfbamobj/ICFBamScopeEditObj.hpp>
+#include <cfbamobj/ICFBamSecAppEditObj.hpp>
+#include <cfbamobj/ICFBamSecDeviceEditObj.hpp>
+#include <cfbamobj/ICFBamSecFormEditObj.hpp>
+#include <cfbamobj/ICFBamSecGroupEditObj.hpp>
+#include <cfbamobj/ICFBamSecGroupFormEditObj.hpp>
+#include <cfbamobj/ICFBamSecGrpIncEditObj.hpp>
+#include <cfbamobj/ICFBamSecGrpMembEditObj.hpp>
+#include <cfbamobj/ICFBamSecSessionEditObj.hpp>
+#include <cfbamobj/ICFBamSecUserEditObj.hpp>
+#include <cfbamobj/ICFBamServerListFuncEditObj.hpp>
+#include <cfbamobj/ICFBamServerMethodEditObj.hpp>
+#include <cfbamobj/ICFBamServerObjFuncEditObj.hpp>
+#include <cfbamobj/ICFBamServerProcEditObj.hpp>
+#include <cfbamobj/ICFBamServiceEditObj.hpp>
+#include <cfbamobj/ICFBamServiceTypeEditObj.hpp>
+#include <cfbamobj/ICFBamStringColEditObj.hpp>
+#include <cfbamobj/ICFBamStringDefEditObj.hpp>
+#include <cfbamobj/ICFBamStringTypeEditObj.hpp>
+#include <cfbamobj/ICFBamSubProjectEditObj.hpp>
+#include <cfbamobj/ICFBamSysClusterEditObj.hpp>
+#include <cfbamobj/ICFBamTSecGroupEditObj.hpp>
+#include <cfbamobj/ICFBamTSecGrpIncEditObj.hpp>
+#include <cfbamobj/ICFBamTSecGrpMembEditObj.hpp>
+#include <cfbamobj/ICFBamTZDateColEditObj.hpp>
+#include <cfbamobj/ICFBamTZDateDefEditObj.hpp>
+#include <cfbamobj/ICFBamTZDateTypeEditObj.hpp>
+#include <cfbamobj/ICFBamTZTimeColEditObj.hpp>
+#include <cfbamobj/ICFBamTZTimeDefEditObj.hpp>
+#include <cfbamobj/ICFBamTZTimeTypeEditObj.hpp>
+#include <cfbamobj/ICFBamTZTimestampColEditObj.hpp>
+#include <cfbamobj/ICFBamTZTimestampDefEditObj.hpp>
+#include <cfbamobj/ICFBamTZTimestampTypeEditObj.hpp>
+#include <cfbamobj/ICFBamTableEditObj.hpp>
+#include <cfbamobj/ICFBamTableColEditObj.hpp>
+#include <cfbamobj/ICFBamTenantEditObj.hpp>
+#include <cfbamobj/ICFBamTextColEditObj.hpp>
+#include <cfbamobj/ICFBamTextDefEditObj.hpp>
+#include <cfbamobj/ICFBamTextTypeEditObj.hpp>
+#include <cfbamobj/ICFBamTimeColEditObj.hpp>
+#include <cfbamobj/ICFBamTimeDefEditObj.hpp>
+#include <cfbamobj/ICFBamTimeTypeEditObj.hpp>
+#include <cfbamobj/ICFBamTimestampColEditObj.hpp>
+#include <cfbamobj/ICFBamTimestampDefEditObj.hpp>
+#include <cfbamobj/ICFBamTimestampTypeEditObj.hpp>
+#include <cfbamobj/ICFBamTldEditObj.hpp>
+#include <cfbamobj/ICFBamTokenColEditObj.hpp>
+#include <cfbamobj/ICFBamTokenDefEditObj.hpp>
+#include <cfbamobj/ICFBamTokenTypeEditObj.hpp>
+#include <cfbamobj/ICFBamTopDomainEditObj.hpp>
+#include <cfbamobj/ICFBamTopProjectEditObj.hpp>
+#include <cfbamobj/ICFBamUInt16ColEditObj.hpp>
+#include <cfbamobj/ICFBamUInt16DefEditObj.hpp>
+#include <cfbamobj/ICFBamUInt16TypeEditObj.hpp>
+#include <cfbamobj/ICFBamUInt32ColEditObj.hpp>
+#include <cfbamobj/ICFBamUInt32DefEditObj.hpp>
+#include <cfbamobj/ICFBamUInt32TypeEditObj.hpp>
+#include <cfbamobj/ICFBamUInt64ColEditObj.hpp>
+#include <cfbamobj/ICFBamUInt64DefEditObj.hpp>
+#include <cfbamobj/ICFBamUInt64TypeEditObj.hpp>
+#include <cfbamobj/ICFBamURLProtocolEditObj.hpp>
+#include <cfbamobj/ICFBamUuidColEditObj.hpp>
+#include <cfbamobj/ICFBamUuidDefEditObj.hpp>
+#include <cfbamobj/ICFBamUuidGenEditObj.hpp>
+#include <cfbamobj/ICFBamUuidTypeEditObj.hpp>
+#include <cfbamobj/ICFBamValueEditObj.hpp>
+
+#include <cfbamobj/ICFBamAtomTableObj.hpp>
+#include <cfbamobj/ICFBamBlobColTableObj.hpp>
+#include <cfbamobj/ICFBamBlobDefTableObj.hpp>
+#include <cfbamobj/ICFBamBlobTypeTableObj.hpp>
+#include <cfbamobj/ICFBamBoolColTableObj.hpp>
+#include <cfbamobj/ICFBamBoolDefTableObj.hpp>
+#include <cfbamobj/ICFBamBoolTypeTableObj.hpp>
+#include <cfbamobj/ICFBamChainTableObj.hpp>
+#include <cfbamobj/ICFBamClearDepTableObj.hpp>
+#include <cfbamobj/ICFBamClearSubDep1TableObj.hpp>
+#include <cfbamobj/ICFBamClearSubDep2TableObj.hpp>
+#include <cfbamobj/ICFBamClearSubDep3TableObj.hpp>
+#include <cfbamobj/ICFBamClearTopDepTableObj.hpp>
+#include <cfbamobj/ICFBamClusterTableObj.hpp>
+#include <cfbamobj/ICFBamDateColTableObj.hpp>
+#include <cfbamobj/ICFBamDateDefTableObj.hpp>
+#include <cfbamobj/ICFBamDateTypeTableObj.hpp>
+#include <cfbamobj/ICFBamDelDepTableObj.hpp>
+#include <cfbamobj/ICFBamDelSubDep1TableObj.hpp>
+#include <cfbamobj/ICFBamDelSubDep2TableObj.hpp>
+#include <cfbamobj/ICFBamDelSubDep3TableObj.hpp>
+#include <cfbamobj/ICFBamDelTopDepTableObj.hpp>
+#include <cfbamobj/ICFBamDoubleColTableObj.hpp>
+#include <cfbamobj/ICFBamDoubleDefTableObj.hpp>
+#include <cfbamobj/ICFBamDoubleTypeTableObj.hpp>
+#include <cfbamobj/ICFBamEnumDefTableObj.hpp>
+#include <cfbamobj/ICFBamEnumTagTableObj.hpp>
+#include <cfbamobj/ICFBamEnumTypeTableObj.hpp>
+#include <cfbamobj/ICFBamFloatColTableObj.hpp>
+#include <cfbamobj/ICFBamFloatDefTableObj.hpp>
+#include <cfbamobj/ICFBamFloatTypeTableObj.hpp>
+#include <cfbamobj/ICFBamHostNodeTableObj.hpp>
+#include <cfbamobj/ICFBamISOCcyTableObj.hpp>
+#include <cfbamobj/ICFBamISOCtryTableObj.hpp>
+#include <cfbamobj/ICFBamISOCtryCcyTableObj.hpp>
+#include <cfbamobj/ICFBamISOCtryLangTableObj.hpp>
+#include <cfbamobj/ICFBamISOLangTableObj.hpp>
+#include <cfbamobj/ICFBamISOTZoneTableObj.hpp>
+#include <cfbamobj/ICFBamId16GenTableObj.hpp>
+#include <cfbamobj/ICFBamId32GenTableObj.hpp>
+#include <cfbamobj/ICFBamId64GenTableObj.hpp>
+#include <cfbamobj/ICFBamIndexTableObj.hpp>
+#include <cfbamobj/ICFBamIndexColTableObj.hpp>
+#include <cfbamobj/ICFBamInt16ColTableObj.hpp>
+#include <cfbamobj/ICFBamInt16DefTableObj.hpp>
+#include <cfbamobj/ICFBamInt16TypeTableObj.hpp>
+#include <cfbamobj/ICFBamInt32ColTableObj.hpp>
+#include <cfbamobj/ICFBamInt32DefTableObj.hpp>
+#include <cfbamobj/ICFBamInt32TypeTableObj.hpp>
+#include <cfbamobj/ICFBamInt64ColTableObj.hpp>
+#include <cfbamobj/ICFBamInt64DefTableObj.hpp>
+#include <cfbamobj/ICFBamInt64TypeTableObj.hpp>
+#include <cfbamobj/ICFBamLicenseTableObj.hpp>
+#include <cfbamobj/ICFBamMajorVersionTableObj.hpp>
+#include <cfbamobj/ICFBamMimeTypeTableObj.hpp>
+#include <cfbamobj/ICFBamMinorVersionTableObj.hpp>
+#include <cfbamobj/ICFBamNmTokenColTableObj.hpp>
+#include <cfbamobj/ICFBamNmTokenDefTableObj.hpp>
+#include <cfbamobj/ICFBamNmTokenTypeTableObj.hpp>
+#include <cfbamobj/ICFBamNmTokensColTableObj.hpp>
+#include <cfbamobj/ICFBamNmTokensDefTableObj.hpp>
+#include <cfbamobj/ICFBamNmTokensTypeTableObj.hpp>
+#include <cfbamobj/ICFBamNumberColTableObj.hpp>
+#include <cfbamobj/ICFBamNumberDefTableObj.hpp>
+#include <cfbamobj/ICFBamNumberTypeTableObj.hpp>
+#include <cfbamobj/ICFBamParamTableObj.hpp>
+#include <cfbamobj/ICFBamPopDepTableObj.hpp>
+#include <cfbamobj/ICFBamPopSubDep1TableObj.hpp>
+#include <cfbamobj/ICFBamPopSubDep2TableObj.hpp>
+#include <cfbamobj/ICFBamPopSubDep3TableObj.hpp>
+#include <cfbamobj/ICFBamPopTopDepTableObj.hpp>
+#include <cfbamobj/ICFBamRelationTableObj.hpp>
+#include <cfbamobj/ICFBamRelationColTableObj.hpp>
+#include <cfbamobj/ICFBamSchemaDefTableObj.hpp>
+#include <cfbamobj/ICFBamSchemaRefTableObj.hpp>
+#include <cfbamobj/ICFBamScopeTableObj.hpp>
+#include <cfbamobj/ICFBamSecAppTableObj.hpp>
+#include <cfbamobj/ICFBamSecDeviceTableObj.hpp>
+#include <cfbamobj/ICFBamSecFormTableObj.hpp>
+#include <cfbamobj/ICFBamSecGroupTableObj.hpp>
+#include <cfbamobj/ICFBamSecGroupFormTableObj.hpp>
+#include <cfbamobj/ICFBamSecGrpIncTableObj.hpp>
+#include <cfbamobj/ICFBamSecGrpMembTableObj.hpp>
+#include <cfbamobj/ICFBamSecSessionTableObj.hpp>
+#include <cfbamobj/ICFBamSecUserTableObj.hpp>
+#include <cfbamobj/ICFBamServerListFuncTableObj.hpp>
+#include <cfbamobj/ICFBamServerMethodTableObj.hpp>
+#include <cfbamobj/ICFBamServerObjFuncTableObj.hpp>
+#include <cfbamobj/ICFBamServerProcTableObj.hpp>
+#include <cfbamobj/ICFBamServiceTableObj.hpp>
+#include <cfbamobj/ICFBamServiceTypeTableObj.hpp>
+#include <cfbamobj/ICFBamStringColTableObj.hpp>
+#include <cfbamobj/ICFBamStringDefTableObj.hpp>
+#include <cfbamobj/ICFBamStringTypeTableObj.hpp>
+#include <cfbamobj/ICFBamSubProjectTableObj.hpp>
+#include <cfbamobj/ICFBamSysClusterTableObj.hpp>
+#include <cfbamobj/ICFBamTSecGroupTableObj.hpp>
+#include <cfbamobj/ICFBamTSecGrpIncTableObj.hpp>
+#include <cfbamobj/ICFBamTSecGrpMembTableObj.hpp>
+#include <cfbamobj/ICFBamTZDateColTableObj.hpp>
+#include <cfbamobj/ICFBamTZDateDefTableObj.hpp>
+#include <cfbamobj/ICFBamTZDateTypeTableObj.hpp>
+#include <cfbamobj/ICFBamTZTimeColTableObj.hpp>
+#include <cfbamobj/ICFBamTZTimeDefTableObj.hpp>
+#include <cfbamobj/ICFBamTZTimeTypeTableObj.hpp>
+#include <cfbamobj/ICFBamTZTimestampColTableObj.hpp>
+#include <cfbamobj/ICFBamTZTimestampDefTableObj.hpp>
+#include <cfbamobj/ICFBamTZTimestampTypeTableObj.hpp>
+#include <cfbamobj/ICFBamTableTableObj.hpp>
+#include <cfbamobj/ICFBamTableColTableObj.hpp>
+#include <cfbamobj/ICFBamTenantTableObj.hpp>
+#include <cfbamobj/ICFBamTextColTableObj.hpp>
+#include <cfbamobj/ICFBamTextDefTableObj.hpp>
+#include <cfbamobj/ICFBamTextTypeTableObj.hpp>
+#include <cfbamobj/ICFBamTimeColTableObj.hpp>
+#include <cfbamobj/ICFBamTimeDefTableObj.hpp>
+#include <cfbamobj/ICFBamTimeTypeTableObj.hpp>
+#include <cfbamobj/ICFBamTimestampColTableObj.hpp>
+#include <cfbamobj/ICFBamTimestampDefTableObj.hpp>
+#include <cfbamobj/ICFBamTimestampTypeTableObj.hpp>
+#include <cfbamobj/ICFBamTldTableObj.hpp>
+#include <cfbamobj/ICFBamTokenColTableObj.hpp>
+#include <cfbamobj/ICFBamTokenDefTableObj.hpp>
+#include <cfbamobj/ICFBamTokenTypeTableObj.hpp>
+#include <cfbamobj/ICFBamTopDomainTableObj.hpp>
+#include <cfbamobj/ICFBamTopProjectTableObj.hpp>
+#include <cfbamobj/ICFBamUInt16ColTableObj.hpp>
+#include <cfbamobj/ICFBamUInt16DefTableObj.hpp>
+#include <cfbamobj/ICFBamUInt16TypeTableObj.hpp>
+#include <cfbamobj/ICFBamUInt32ColTableObj.hpp>
+#include <cfbamobj/ICFBamUInt32DefTableObj.hpp>
+#include <cfbamobj/ICFBamUInt32TypeTableObj.hpp>
+#include <cfbamobj/ICFBamUInt64ColTableObj.hpp>
+#include <cfbamobj/ICFBamUInt64DefTableObj.hpp>
+#include <cfbamobj/ICFBamUInt64TypeTableObj.hpp>
+#include <cfbamobj/ICFBamURLProtocolTableObj.hpp>
+#include <cfbamobj/ICFBamUuidColTableObj.hpp>
+#include <cfbamobj/ICFBamUuidDefTableObj.hpp>
+#include <cfbamobj/ICFBamUuidGenTableObj.hpp>
+#include <cfbamobj/ICFBamUuidTypeTableObj.hpp>
+#include <cfbamobj/ICFBamValueTableObj.hpp>

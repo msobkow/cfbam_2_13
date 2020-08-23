@@ -1,0 +1,1260 @@
+#pragma once
+
+// Description: C++18 interface for a CFBam public invoker.
+
+/*
+ *	org.msscf.msscf.CFBam
+ *
+ *	Copyright (c) 2020 Mark Stephen Sobkow
+ *	
+ *	MSS Code Factory CFBam 2.13 Business Application Model
+ *	
+ *	Copyright 2020 Mark Stephen Sobkow
+ *	
+ *		This file is part of MSS Code Factory.
+ *	
+ *		MSS Code Factory is available under dual commercial license from Mark Stephen
+ *		Sobkow, or under the terms of the GNU General Public License, Version 3
+ *		or later.
+ *	
+ *	    MSS Code Factory is free software: you can redistribute it and/or modify
+ *	    it under the terms of the GNU General Public License as published by
+ *	    the Free Software Foundation, either version 3 of the License, or
+ *	    (at your option) any later version.
+ *	
+ *	    MSS Code Factory is distributed in the hope that it will be useful,
+ *	    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	    GNU General Public License for more details.
+ *	
+ *	    You should have received a copy of the GNU General Public License
+ *	    along with MSS Code Factory.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	Donations to support MSS Code Factory can be made at
+ *	https://www.paypal.com/paypalme2/MarkSobkow
+ *	
+ *	Please contact Mark Stephen Sobkow at msobkow@sasktel.net for commercial licensing.
+ *
+ *	Manufactured by MSS Code Factory 2.12
+ */
+
+#include <uuid/uuid.h>
+
+#include <array>
+#include <cassert>
+#include <cstddef>
+#include <chrono>
+#include <ctime>
+#include <functional>
+#include <list>
+#include <map>
+#include <string>
+#include <vector>
+
+#include <cflib/ICFLibPublic.hpp>
+
+namespace cfbam {
+
+	class CFBamChainPKey;
+	class CFBamEnumTagPKey;
+	class CFBamIndexColPKey;
+	class CFBamParamPKey;
+	class CFBamRelationColPKey;
+	class CFBamScopePKey;
+	class CFBamValuePKey;
+
+	class CFBamAtomHPKey;
+	class CFBamBlobColHPKey;
+	class CFBamBlobDefHPKey;
+	class CFBamBlobTypeHPKey;
+	class CFBamBoolColHPKey;
+	class CFBamBoolDefHPKey;
+	class CFBamBoolTypeHPKey;
+	class CFBamChainHPKey;
+	class CFBamClearDepHPKey;
+	class CFBamClearSubDep1HPKey;
+	class CFBamClearSubDep2HPKey;
+	class CFBamClearSubDep3HPKey;
+	class CFBamClearTopDepHPKey;
+	class CFBamDateColHPKey;
+	class CFBamDateDefHPKey;
+	class CFBamDateTypeHPKey;
+	class CFBamDelDepHPKey;
+	class CFBamDelSubDep1HPKey;
+	class CFBamDelSubDep2HPKey;
+	class CFBamDelSubDep3HPKey;
+	class CFBamDelTopDepHPKey;
+	class CFBamDoubleColHPKey;
+	class CFBamDoubleDefHPKey;
+	class CFBamDoubleTypeHPKey;
+	class CFBamEnumDefHPKey;
+	class CFBamEnumTagHPKey;
+	class CFBamEnumTypeHPKey;
+	class CFBamFloatColHPKey;
+	class CFBamFloatDefHPKey;
+	class CFBamFloatTypeHPKey;
+	class CFBamId16GenHPKey;
+	class CFBamId32GenHPKey;
+	class CFBamId64GenHPKey;
+	class CFBamIndexHPKey;
+	class CFBamIndexColHPKey;
+	class CFBamInt16ColHPKey;
+	class CFBamInt16DefHPKey;
+	class CFBamInt16TypeHPKey;
+	class CFBamInt32ColHPKey;
+	class CFBamInt32DefHPKey;
+	class CFBamInt32TypeHPKey;
+	class CFBamInt64ColHPKey;
+	class CFBamInt64DefHPKey;
+	class CFBamInt64TypeHPKey;
+	class CFBamNmTokenColHPKey;
+	class CFBamNmTokenDefHPKey;
+	class CFBamNmTokenTypeHPKey;
+	class CFBamNmTokensColHPKey;
+	class CFBamNmTokensDefHPKey;
+	class CFBamNmTokensTypeHPKey;
+	class CFBamNumberColHPKey;
+	class CFBamNumberDefHPKey;
+	class CFBamNumberTypeHPKey;
+	class CFBamParamHPKey;
+	class CFBamPopDepHPKey;
+	class CFBamPopSubDep1HPKey;
+	class CFBamPopSubDep2HPKey;
+	class CFBamPopSubDep3HPKey;
+	class CFBamPopTopDepHPKey;
+	class CFBamRelationHPKey;
+	class CFBamRelationColHPKey;
+	class CFBamSchemaDefHPKey;
+	class CFBamSchemaRefHPKey;
+	class CFBamScopeHPKey;
+	class CFBamServerListFuncHPKey;
+	class CFBamServerMethodHPKey;
+	class CFBamServerObjFuncHPKey;
+	class CFBamServerProcHPKey;
+	class CFBamStringColHPKey;
+	class CFBamStringDefHPKey;
+	class CFBamStringTypeHPKey;
+	class CFBamTZDateColHPKey;
+	class CFBamTZDateDefHPKey;
+	class CFBamTZDateTypeHPKey;
+	class CFBamTZTimeColHPKey;
+	class CFBamTZTimeDefHPKey;
+	class CFBamTZTimeTypeHPKey;
+	class CFBamTZTimestampColHPKey;
+	class CFBamTZTimestampDefHPKey;
+	class CFBamTZTimestampTypeHPKey;
+	class CFBamTableHPKey;
+	class CFBamTableColHPKey;
+	class CFBamTextColHPKey;
+	class CFBamTextDefHPKey;
+	class CFBamTextTypeHPKey;
+	class CFBamTimeColHPKey;
+	class CFBamTimeDefHPKey;
+	class CFBamTimeTypeHPKey;
+	class CFBamTimestampColHPKey;
+	class CFBamTimestampDefHPKey;
+	class CFBamTimestampTypeHPKey;
+	class CFBamTokenColHPKey;
+	class CFBamTokenDefHPKey;
+	class CFBamTokenTypeHPKey;
+	class CFBamUInt16ColHPKey;
+	class CFBamUInt16DefHPKey;
+	class CFBamUInt16TypeHPKey;
+	class CFBamUInt32ColHPKey;
+	class CFBamUInt32DefHPKey;
+	class CFBamUInt32TypeHPKey;
+	class CFBamUInt64ColHPKey;
+	class CFBamUInt64DefHPKey;
+	class CFBamUInt64TypeHPKey;
+	class CFBamUuidColHPKey;
+	class CFBamUuidDefHPKey;
+	class CFBamUuidGenHPKey;
+	class CFBamUuidTypeHPKey;
+	class CFBamValueHPKey;
+
+	class CFBamAtomBuff;
+	class CFBamBlobColBuff;
+	class CFBamBlobDefBuff;
+	class CFBamBlobTypeBuff;
+	class CFBamBoolColBuff;
+	class CFBamBoolDefBuff;
+	class CFBamBoolTypeBuff;
+	class CFBamChainBuff;
+	class CFBamClearDepBuff;
+	class CFBamClearSubDep1Buff;
+	class CFBamClearSubDep2Buff;
+	class CFBamClearSubDep3Buff;
+	class CFBamClearTopDepBuff;
+	class CFBamDateColBuff;
+	class CFBamDateDefBuff;
+	class CFBamDateTypeBuff;
+	class CFBamDelDepBuff;
+	class CFBamDelSubDep1Buff;
+	class CFBamDelSubDep2Buff;
+	class CFBamDelSubDep3Buff;
+	class CFBamDelTopDepBuff;
+	class CFBamDoubleColBuff;
+	class CFBamDoubleDefBuff;
+	class CFBamDoubleTypeBuff;
+	class CFBamEnumDefBuff;
+	class CFBamEnumTagBuff;
+	class CFBamEnumTypeBuff;
+	class CFBamFloatColBuff;
+	class CFBamFloatDefBuff;
+	class CFBamFloatTypeBuff;
+	class CFBamId16GenBuff;
+	class CFBamId32GenBuff;
+	class CFBamId64GenBuff;
+	class CFBamIndexBuff;
+	class CFBamIndexColBuff;
+	class CFBamInt16ColBuff;
+	class CFBamInt16DefBuff;
+	class CFBamInt16TypeBuff;
+	class CFBamInt32ColBuff;
+	class CFBamInt32DefBuff;
+	class CFBamInt32TypeBuff;
+	class CFBamInt64ColBuff;
+	class CFBamInt64DefBuff;
+	class CFBamInt64TypeBuff;
+	class CFBamNmTokenColBuff;
+	class CFBamNmTokenDefBuff;
+	class CFBamNmTokenTypeBuff;
+	class CFBamNmTokensColBuff;
+	class CFBamNmTokensDefBuff;
+	class CFBamNmTokensTypeBuff;
+	class CFBamNumberColBuff;
+	class CFBamNumberDefBuff;
+	class CFBamNumberTypeBuff;
+	class CFBamParamBuff;
+	class CFBamPopDepBuff;
+	class CFBamPopSubDep1Buff;
+	class CFBamPopSubDep2Buff;
+	class CFBamPopSubDep3Buff;
+	class CFBamPopTopDepBuff;
+	class CFBamRelationBuff;
+	class CFBamRelationColBuff;
+	class CFBamSchemaDefBuff;
+	class CFBamSchemaRefBuff;
+	class CFBamScopeBuff;
+	class CFBamServerListFuncBuff;
+	class CFBamServerMethodBuff;
+	class CFBamServerObjFuncBuff;
+	class CFBamServerProcBuff;
+	class CFBamStringColBuff;
+	class CFBamStringDefBuff;
+	class CFBamStringTypeBuff;
+	class CFBamTZDateColBuff;
+	class CFBamTZDateDefBuff;
+	class CFBamTZDateTypeBuff;
+	class CFBamTZTimeColBuff;
+	class CFBamTZTimeDefBuff;
+	class CFBamTZTimeTypeBuff;
+	class CFBamTZTimestampColBuff;
+	class CFBamTZTimestampDefBuff;
+	class CFBamTZTimestampTypeBuff;
+	class CFBamTableBuff;
+	class CFBamTableColBuff;
+	class CFBamTextColBuff;
+	class CFBamTextDefBuff;
+	class CFBamTextTypeBuff;
+	class CFBamTimeColBuff;
+	class CFBamTimeDefBuff;
+	class CFBamTimeTypeBuff;
+	class CFBamTimestampColBuff;
+	class CFBamTimestampDefBuff;
+	class CFBamTimestampTypeBuff;
+	class CFBamTokenColBuff;
+	class CFBamTokenDefBuff;
+	class CFBamTokenTypeBuff;
+	class CFBamUInt16ColBuff;
+	class CFBamUInt16DefBuff;
+	class CFBamUInt16TypeBuff;
+	class CFBamUInt32ColBuff;
+	class CFBamUInt32DefBuff;
+	class CFBamUInt32TypeBuff;
+	class CFBamUInt64ColBuff;
+	class CFBamUInt64DefBuff;
+	class CFBamUInt64TypeBuff;
+	class CFBamUuidColBuff;
+	class CFBamUuidDefBuff;
+	class CFBamUuidGenBuff;
+	class CFBamUuidTypeBuff;
+	class CFBamValueBuff;
+
+	class CFBamAtomHBuff;
+	class CFBamBlobColHBuff;
+	class CFBamBlobDefHBuff;
+	class CFBamBlobTypeHBuff;
+	class CFBamBoolColHBuff;
+	class CFBamBoolDefHBuff;
+	class CFBamBoolTypeHBuff;
+	class CFBamChainHBuff;
+	class CFBamClearDepHBuff;
+	class CFBamClearSubDep1HBuff;
+	class CFBamClearSubDep2HBuff;
+	class CFBamClearSubDep3HBuff;
+	class CFBamClearTopDepHBuff;
+	class CFBamDateColHBuff;
+	class CFBamDateDefHBuff;
+	class CFBamDateTypeHBuff;
+	class CFBamDelDepHBuff;
+	class CFBamDelSubDep1HBuff;
+	class CFBamDelSubDep2HBuff;
+	class CFBamDelSubDep3HBuff;
+	class CFBamDelTopDepHBuff;
+	class CFBamDoubleColHBuff;
+	class CFBamDoubleDefHBuff;
+	class CFBamDoubleTypeHBuff;
+	class CFBamEnumDefHBuff;
+	class CFBamEnumTagHBuff;
+	class CFBamEnumTypeHBuff;
+	class CFBamFloatColHBuff;
+	class CFBamFloatDefHBuff;
+	class CFBamFloatTypeHBuff;
+	class CFBamId16GenHBuff;
+	class CFBamId32GenHBuff;
+	class CFBamId64GenHBuff;
+	class CFBamIndexHBuff;
+	class CFBamIndexColHBuff;
+	class CFBamInt16ColHBuff;
+	class CFBamInt16DefHBuff;
+	class CFBamInt16TypeHBuff;
+	class CFBamInt32ColHBuff;
+	class CFBamInt32DefHBuff;
+	class CFBamInt32TypeHBuff;
+	class CFBamInt64ColHBuff;
+	class CFBamInt64DefHBuff;
+	class CFBamInt64TypeHBuff;
+	class CFBamNmTokenColHBuff;
+	class CFBamNmTokenDefHBuff;
+	class CFBamNmTokenTypeHBuff;
+	class CFBamNmTokensColHBuff;
+	class CFBamNmTokensDefHBuff;
+	class CFBamNmTokensTypeHBuff;
+	class CFBamNumberColHBuff;
+	class CFBamNumberDefHBuff;
+	class CFBamNumberTypeHBuff;
+	class CFBamParamHBuff;
+	class CFBamPopDepHBuff;
+	class CFBamPopSubDep1HBuff;
+	class CFBamPopSubDep2HBuff;
+	class CFBamPopSubDep3HBuff;
+	class CFBamPopTopDepHBuff;
+	class CFBamRelationHBuff;
+	class CFBamRelationColHBuff;
+	class CFBamSchemaDefHBuff;
+	class CFBamSchemaRefHBuff;
+	class CFBamScopeHBuff;
+	class CFBamServerListFuncHBuff;
+	class CFBamServerMethodHBuff;
+	class CFBamServerObjFuncHBuff;
+	class CFBamServerProcHBuff;
+	class CFBamStringColHBuff;
+	class CFBamStringDefHBuff;
+	class CFBamStringTypeHBuff;
+	class CFBamTZDateColHBuff;
+	class CFBamTZDateDefHBuff;
+	class CFBamTZDateTypeHBuff;
+	class CFBamTZTimeColHBuff;
+	class CFBamTZTimeDefHBuff;
+	class CFBamTZTimeTypeHBuff;
+	class CFBamTZTimestampColHBuff;
+	class CFBamTZTimestampDefHBuff;
+	class CFBamTZTimestampTypeHBuff;
+	class CFBamTableHBuff;
+	class CFBamTableColHBuff;
+	class CFBamTextColHBuff;
+	class CFBamTextDefHBuff;
+	class CFBamTextTypeHBuff;
+	class CFBamTimeColHBuff;
+	class CFBamTimeDefHBuff;
+	class CFBamTimeTypeHBuff;
+	class CFBamTimestampColHBuff;
+	class CFBamTimestampDefHBuff;
+	class CFBamTimestampTypeHBuff;
+	class CFBamTokenColHBuff;
+	class CFBamTokenDefHBuff;
+	class CFBamTokenTypeHBuff;
+	class CFBamUInt16ColHBuff;
+	class CFBamUInt16DefHBuff;
+	class CFBamUInt16TypeHBuff;
+	class CFBamUInt32ColHBuff;
+	class CFBamUInt32DefHBuff;
+	class CFBamUInt32TypeHBuff;
+	class CFBamUInt64ColHBuff;
+	class CFBamUInt64DefHBuff;
+	class CFBamUInt64TypeHBuff;
+	class CFBamUuidColHBuff;
+	class CFBamUuidDefHBuff;
+	class CFBamUuidGenHBuff;
+	class CFBamUuidTypeHBuff;
+	class CFBamValueHBuff;
+
+	class CFBamBlobColByTableIdxKey;
+	class CFBamBlobTypeBySchemaIdxKey;
+	class CFBamBoolColByTableIdxKey;
+	class CFBamBoolTypeBySchemaIdxKey;
+	class CFBamChainByTenantIdxKey;
+	class CFBamChainByChainTableIdxKey;
+	class CFBamChainByDefSchemaIdxKey;
+	class CFBamChainByUNameIdxKey;
+	class CFBamChainByPrevRelIdxKey;
+	class CFBamChainByNextRelIdxKey;
+	class CFBamClearDepByClearDepIdxKey;
+	class CFBamClearDepByDefSchemaIdxKey;
+	class CFBamClearSubDep1ByClearTopDepIdxKey;
+	class CFBamClearSubDep1ByUNameIdxKey;
+	class CFBamClearSubDep2ByClearSubDep1IdxKey;
+	class CFBamClearSubDep2ByUNameIdxKey;
+	class CFBamClearSubDep3ByClearSubDep2IdxKey;
+	class CFBamClearSubDep3ByUNameIdxKey;
+	class CFBamClearTopDepByClrTopDepTblIdxKey;
+	class CFBamClearTopDepByUNameIdxKey;
+	class CFBamClearTopDepByPrevIdxKey;
+	class CFBamClearTopDepByNextIdxKey;
+	class CFBamDateColByTableIdxKey;
+	class CFBamDateTypeBySchemaIdxKey;
+	class CFBamDelDepByDefSchemaIdxKey;
+	class CFBamDelDepByDelDepIdxKey;
+	class CFBamDelSubDep1ByDelTopDepIdxKey;
+	class CFBamDelSubDep1ByUNameIdxKey;
+	class CFBamDelSubDep2ByContDelDep1IdxKey;
+	class CFBamDelSubDep2ByUNameIdxKey;
+	class CFBamDelSubDep3ByDelSubDep2IdxKey;
+	class CFBamDelSubDep3ByUNameIdxKey;
+	class CFBamDelTopDepByDelTopDepTblIdxKey;
+	class CFBamDelTopDepByUNameIdxKey;
+	class CFBamDelTopDepByPrevIdxKey;
+	class CFBamDelTopDepByNextIdxKey;
+	class CFBamDoubleColByTableIdxKey;
+	class CFBamDoubleTypeBySchemaIdxKey;
+	class CFBamEnumTagByEnumTagTenantIdxKey;
+	class CFBamEnumTagByEnumIdxKey;
+	class CFBamEnumTagByDefSchemaIdxKey;
+	class CFBamEnumTagByEnumNameIdxKey;
+	class CFBamEnumTagByPrevIdxKey;
+	class CFBamEnumTagByNextIdxKey;
+	class CFBamEnumTypeBySchemaIdxKey;
+	class CFBamFloatColByTableIdxKey;
+	class CFBamFloatTypeBySchemaIdxKey;
+	class CFBamId16GenByDispIdxKey;
+	class CFBamId32GenByDispIdxKey;
+	class CFBamId64GenByDispIdxKey;
+	class CFBamIndexByUNameIdxKey;
+	class CFBamIndexByIndexTenantIdxKey;
+	class CFBamIndexByIdxTableIdxKey;
+	class CFBamIndexByDefSchemaIdxKey;
+	class CFBamIndexColByUNameIdxKey;
+	class CFBamIndexColByIdxColTenantIdxKey;
+	class CFBamIndexColByIndexIdxKey;
+	class CFBamIndexColByDefSchemaIdxKey;
+	class CFBamIndexColByColIdxKey;
+	class CFBamIndexColByPrevIdxKey;
+	class CFBamIndexColByNextIdxKey;
+	class CFBamIndexColByIdxPrevIdxKey;
+	class CFBamIndexColByIdxNextIdxKey;
+	class CFBamInt16ColByTableIdxKey;
+	class CFBamInt16TypeBySchemaIdxKey;
+	class CFBamInt32ColByTableIdxKey;
+	class CFBamInt32TypeBySchemaIdxKey;
+	class CFBamInt64ColByTableIdxKey;
+	class CFBamInt64TypeBySchemaIdxKey;
+	class CFBamNmTokenColByTableIdxKey;
+	class CFBamNmTokenTypeBySchemaIdxKey;
+	class CFBamNmTokensColByTableIdxKey;
+	class CFBamNmTokensTypeBySchemaIdxKey;
+	class CFBamNumberColByTableIdxKey;
+	class CFBamNumberTypeBySchemaIdxKey;
+	class CFBamParamByUNameIdxKey;
+	class CFBamParamByValTentIdxKey;
+	class CFBamParamByServerMethodIdxKey;
+	class CFBamParamByDefSchemaIdxKey;
+	class CFBamParamByServerTypeIdxKey;
+	class CFBamParamByPrevIdxKey;
+	class CFBamParamByNextIdxKey;
+	class CFBamParamByContPrevIdxKey;
+	class CFBamParamByContNextIdxKey;
+	class CFBamPopDepByRelationIdxKey;
+	class CFBamPopDepByDefSchemaIdxKey;
+	class CFBamPopSubDep1ByPopTopDepIdxKey;
+	class CFBamPopSubDep1ByUNameIdxKey;
+	class CFBamPopSubDep2ByPopSubDep1IdxKey;
+	class CFBamPopSubDep2ByUNameIdxKey;
+	class CFBamPopSubDep3ByPopSubDep2IdxKey;
+	class CFBamPopSubDep3ByUNameIdxKey;
+	class CFBamPopTopDepByContRelIdxKey;
+	class CFBamPopTopDepByUNameIdxKey;
+	class CFBamRelationByUNameIdxKey;
+	class CFBamRelationByRelnTenantIdxKey;
+	class CFBamRelationByRelTableIdxKey;
+	class CFBamRelationByDefSchemaIdxKey;
+	class CFBamRelationByFromKeyIdxKey;
+	class CFBamRelationByToTblIdxKey;
+	class CFBamRelationByToKeyIdxKey;
+	class CFBamRelationByNarrowedIdxKey;
+	class CFBamRelationColByUNameIdxKey;
+	class CFBamRelationColByRelColTenantIdxKey;
+	class CFBamRelationColByRelationIdxKey;
+	class CFBamRelationColByDefSchemaIdxKey;
+	class CFBamRelationColByFromColIdxKey;
+	class CFBamRelationColByToColIdxKey;
+	class CFBamRelationColByPrevIdxKey;
+	class CFBamRelationColByNextIdxKey;
+	class CFBamRelationColByRelPrevIdxKey;
+	class CFBamRelationColByRelNextIdxKey;
+	class CFBamSchemaDefByCTenantIdxKey;
+	class CFBamSchemaDefByMinorVersionIdxKey;
+	class CFBamSchemaDefByUNameIdxKey;
+	class CFBamSchemaDefByAuthEMailIdxKey;
+	class CFBamSchemaDefByProjectURLIdxKey;
+	class CFBamSchemaDefByPubURIIdxKey;
+	class CFBamSchemaRefBySchemaIdxKey;
+	class CFBamSchemaRefByUNameIdxKey;
+	class CFBamSchemaRefByRefSchemaIdxKey;
+	class CFBamSchemaRefByPrevIdxKey;
+	class CFBamSchemaRefByNextIdxKey;
+	class CFBamScopeByTenantIdxKey;
+	class CFBamServerListFuncByRetTblIdxKey;
+	class CFBamServerMethodByUNameIdxKey;
+	class CFBamServerMethodByMethTableIdxKey;
+	class CFBamServerMethodByDefSchemaIdxKey;
+	class CFBamServerObjFuncByRetTblIdxKey;
+	class CFBamStringColByTableIdxKey;
+	class CFBamStringTypeBySchemaIdxKey;
+	class CFBamTZDateColByTableIdxKey;
+	class CFBamTZDateTypeBySchemaIdxKey;
+	class CFBamTZTimeColByTableIdxKey;
+	class CFBamTZTimeTypeBySchemaIdxKey;
+	class CFBamTZTimestampColByTableIdxKey;
+	class CFBamTZTimestampTypeBySchemaIdxKey;
+	class CFBamTableBySchemaDefIdxKey;
+	class CFBamTableByDefSchemaIdxKey;
+	class CFBamTableByUNameIdxKey;
+	class CFBamTableBySchemaCdIdxKey;
+	class CFBamTableByPrimaryIndexIdxKey;
+	class CFBamTableByLookupIndexIdxKey;
+	class CFBamTableByAltIndexIdxKey;
+	class CFBamTableByQualTableIdxKey;
+	class CFBamTableColByTableIdxKey;
+	class CFBamTableColByDataIdxKey;
+	class CFBamTextColByTableIdxKey;
+	class CFBamTextTypeBySchemaIdxKey;
+	class CFBamTimeColByTableIdxKey;
+	class CFBamTimeTypeBySchemaIdxKey;
+	class CFBamTimestampColByTableIdxKey;
+	class CFBamTimestampTypeBySchemaIdxKey;
+	class CFBamTokenColByTableIdxKey;
+	class CFBamTokenTypeBySchemaIdxKey;
+	class CFBamUInt16ColByTableIdxKey;
+	class CFBamUInt16TypeBySchemaIdxKey;
+	class CFBamUInt32ColByTableIdxKey;
+	class CFBamUInt32TypeBySchemaIdxKey;
+	class CFBamUInt64ColByTableIdxKey;
+	class CFBamUInt64TypeBySchemaIdxKey;
+	class CFBamUuidColByTableIdxKey;
+	class CFBamUuidTypeBySchemaIdxKey;
+	class CFBamValueByUNameIdxKey;
+	class CFBamValueByValTentIdxKey;
+	class CFBamValueByScopeIdxKey;
+	class CFBamValueByDefSchemaIdxKey;
+	class CFBamValueByPrevIdxKey;
+	class CFBamValueByNextIdxKey;
+	class CFBamValueByContPrevIdxKey;
+	class CFBamValueByContNextIdxKey;
+
+	class ICFBamAtomTable;
+	class ICFBamBlobColTable;
+	class ICFBamBlobDefTable;
+	class ICFBamBlobTypeTable;
+	class ICFBamBoolColTable;
+	class ICFBamBoolDefTable;
+	class ICFBamBoolTypeTable;
+	class ICFBamChainTable;
+	class ICFBamClearDepTable;
+	class ICFBamClearSubDep1Table;
+	class ICFBamClearSubDep2Table;
+	class ICFBamClearSubDep3Table;
+	class ICFBamClearTopDepTable;
+	class ICFBamClusterTable;
+	class ICFBamDateColTable;
+	class ICFBamDateDefTable;
+	class ICFBamDateTypeTable;
+	class ICFBamDelDepTable;
+	class ICFBamDelSubDep1Table;
+	class ICFBamDelSubDep2Table;
+	class ICFBamDelSubDep3Table;
+	class ICFBamDelTopDepTable;
+	class ICFBamDoubleColTable;
+	class ICFBamDoubleDefTable;
+	class ICFBamDoubleTypeTable;
+	class ICFBamEnumDefTable;
+	class ICFBamEnumTagTable;
+	class ICFBamEnumTypeTable;
+	class ICFBamFloatColTable;
+	class ICFBamFloatDefTable;
+	class ICFBamFloatTypeTable;
+	class ICFBamHostNodeTable;
+	class ICFBamISOCcyTable;
+	class ICFBamISOCtryTable;
+	class ICFBamISOCtryCcyTable;
+	class ICFBamISOCtryLangTable;
+	class ICFBamISOLangTable;
+	class ICFBamISOTZoneTable;
+	class ICFBamId16GenTable;
+	class ICFBamId32GenTable;
+	class ICFBamId64GenTable;
+	class ICFBamIndexTable;
+	class ICFBamIndexColTable;
+	class ICFBamInt16ColTable;
+	class ICFBamInt16DefTable;
+	class ICFBamInt16TypeTable;
+	class ICFBamInt32ColTable;
+	class ICFBamInt32DefTable;
+	class ICFBamInt32TypeTable;
+	class ICFBamInt64ColTable;
+	class ICFBamInt64DefTable;
+	class ICFBamInt64TypeTable;
+	class ICFBamLicenseTable;
+	class ICFBamMajorVersionTable;
+	class ICFBamMimeTypeTable;
+	class ICFBamMinorVersionTable;
+	class ICFBamNmTokenColTable;
+	class ICFBamNmTokenDefTable;
+	class ICFBamNmTokenTypeTable;
+	class ICFBamNmTokensColTable;
+	class ICFBamNmTokensDefTable;
+	class ICFBamNmTokensTypeTable;
+	class ICFBamNumberColTable;
+	class ICFBamNumberDefTable;
+	class ICFBamNumberTypeTable;
+	class ICFBamParamTable;
+	class ICFBamPopDepTable;
+	class ICFBamPopSubDep1Table;
+	class ICFBamPopSubDep2Table;
+	class ICFBamPopSubDep3Table;
+	class ICFBamPopTopDepTable;
+	class ICFBamRelationTable;
+	class ICFBamRelationColTable;
+	class ICFBamSchemaDefTable;
+	class ICFBamSchemaRefTable;
+	class ICFBamScopeTable;
+	class ICFBamSecAppTable;
+	class ICFBamSecDeviceTable;
+	class ICFBamSecFormTable;
+	class ICFBamSecGroupTable;
+	class ICFBamSecGroupFormTable;
+	class ICFBamSecGrpIncTable;
+	class ICFBamSecGrpMembTable;
+	class ICFBamSecSessionTable;
+	class ICFBamSecUserTable;
+	class ICFBamServerListFuncTable;
+	class ICFBamServerMethodTable;
+	class ICFBamServerObjFuncTable;
+	class ICFBamServerProcTable;
+	class ICFBamServiceTable;
+	class ICFBamServiceTypeTable;
+	class ICFBamStringColTable;
+	class ICFBamStringDefTable;
+	class ICFBamStringTypeTable;
+	class ICFBamSubProjectTable;
+	class ICFBamSysClusterTable;
+	class ICFBamTSecGroupTable;
+	class ICFBamTSecGrpIncTable;
+	class ICFBamTSecGrpMembTable;
+	class ICFBamTZDateColTable;
+	class ICFBamTZDateDefTable;
+	class ICFBamTZDateTypeTable;
+	class ICFBamTZTimeColTable;
+	class ICFBamTZTimeDefTable;
+	class ICFBamTZTimeTypeTable;
+	class ICFBamTZTimestampColTable;
+	class ICFBamTZTimestampDefTable;
+	class ICFBamTZTimestampTypeTable;
+	class ICFBamTableTable;
+	class ICFBamTableColTable;
+	class ICFBamTenantTable;
+	class ICFBamTextColTable;
+	class ICFBamTextDefTable;
+	class ICFBamTextTypeTable;
+	class ICFBamTimeColTable;
+	class ICFBamTimeDefTable;
+	class ICFBamTimeTypeTable;
+	class ICFBamTimestampColTable;
+	class ICFBamTimestampDefTable;
+	class ICFBamTimestampTypeTable;
+	class ICFBamTldTable;
+	class ICFBamTokenColTable;
+	class ICFBamTokenDefTable;
+	class ICFBamTokenTypeTable;
+	class ICFBamTopDomainTable;
+	class ICFBamTopProjectTable;
+	class ICFBamUInt16ColTable;
+	class ICFBamUInt16DefTable;
+	class ICFBamUInt16TypeTable;
+	class ICFBamUInt32ColTable;
+	class ICFBamUInt32DefTable;
+	class ICFBamUInt32TypeTable;
+	class ICFBamUInt64ColTable;
+	class ICFBamUInt64DefTable;
+	class ICFBamUInt64TypeTable;
+	class ICFBamURLProtocolTable;
+	class ICFBamUuidColTable;
+	class ICFBamUuidDefTable;
+	class ICFBamUuidGenTable;
+	class ICFBamUuidTypeTable;
+	class ICFBamValueTable;
+}
+#include <cfsec/ICFSecSchema.hpp>
+#include <cfsec/CFSecAuthorization.hpp>
+#include <cfbam/CFBamConfigurationFile.hpp>
+#include <cfbam/ICFBamTablePerms.hpp>
+#include <cfsec/ICFSecPublic.hpp>
+#include <cfint/ICFIntPublic.hpp>
+
+#include <cfbam/CFBamChainPKey.hpp>
+#include <cfbam/CFBamEnumTagPKey.hpp>
+#include <cfbam/CFBamIndexColPKey.hpp>
+#include <cfbam/CFBamParamPKey.hpp>
+#include <cfbam/CFBamRelationColPKey.hpp>
+#include <cfbam/CFBamScopePKey.hpp>
+#include <cfbam/CFBamValuePKey.hpp>
+
+#include <cfbam/CFBamChainHPKey.hpp>
+#include <cfbam/CFBamEnumTagHPKey.hpp>
+#include <cfbam/CFBamIndexColHPKey.hpp>
+#include <cfbam/CFBamParamHPKey.hpp>
+#include <cfbam/CFBamRelationColHPKey.hpp>
+#include <cfbam/CFBamScopeHPKey.hpp>
+#include <cfbam/CFBamValueHPKey.hpp>
+
+#include <cfbam/CFBamChainBuff.hpp>
+#include <cfbam/CFBamEnumTagBuff.hpp>
+#include <cfbam/CFBamIndexColBuff.hpp>
+#include <cfbam/CFBamParamBuff.hpp>
+#include <cfbam/CFBamRelationColBuff.hpp>
+#include <cfbam/CFBamScopeBuff.hpp>
+#include <cfbam/CFBamSchemaDefBuff.hpp>
+#include <cfbam/CFBamSchemaRefBuff.hpp>
+#include <cfbam/CFBamServerMethodBuff.hpp>
+#include <cfbam/CFBamServerObjFuncBuff.hpp>
+#include <cfbam/CFBamServerProcBuff.hpp>
+#include <cfbam/CFBamServerListFuncBuff.hpp>
+#include <cfbam/CFBamTableBuff.hpp>
+#include <cfbam/CFBamClearDepBuff.hpp>
+#include <cfbam/CFBamClearSubDep1Buff.hpp>
+#include <cfbam/CFBamClearSubDep2Buff.hpp>
+#include <cfbam/CFBamClearSubDep3Buff.hpp>
+#include <cfbam/CFBamClearTopDepBuff.hpp>
+#include <cfbam/CFBamDelDepBuff.hpp>
+#include <cfbam/CFBamDelSubDep1Buff.hpp>
+#include <cfbam/CFBamDelSubDep2Buff.hpp>
+#include <cfbam/CFBamDelSubDep3Buff.hpp>
+#include <cfbam/CFBamDelTopDepBuff.hpp>
+#include <cfbam/CFBamIndexBuff.hpp>
+#include <cfbam/CFBamPopDepBuff.hpp>
+#include <cfbam/CFBamPopSubDep1Buff.hpp>
+#include <cfbam/CFBamPopSubDep2Buff.hpp>
+#include <cfbam/CFBamPopSubDep3Buff.hpp>
+#include <cfbam/CFBamPopTopDepBuff.hpp>
+#include <cfbam/CFBamRelationBuff.hpp>
+#include <cfbam/CFBamValueBuff.hpp>
+#include <cfbam/CFBamAtomBuff.hpp>
+#include <cfbam/CFBamBlobDefBuff.hpp>
+#include <cfbam/CFBamBlobTypeBuff.hpp>
+#include <cfbam/CFBamBlobColBuff.hpp>
+#include <cfbam/CFBamBoolDefBuff.hpp>
+#include <cfbam/CFBamBoolTypeBuff.hpp>
+#include <cfbam/CFBamBoolColBuff.hpp>
+#include <cfbam/CFBamDateDefBuff.hpp>
+#include <cfbam/CFBamDateTypeBuff.hpp>
+#include <cfbam/CFBamDateColBuff.hpp>
+#include <cfbam/CFBamDoubleDefBuff.hpp>
+#include <cfbam/CFBamDoubleTypeBuff.hpp>
+#include <cfbam/CFBamDoubleColBuff.hpp>
+#include <cfbam/CFBamFloatDefBuff.hpp>
+#include <cfbam/CFBamFloatTypeBuff.hpp>
+#include <cfbam/CFBamFloatColBuff.hpp>
+#include <cfbam/CFBamInt16DefBuff.hpp>
+#include <cfbam/CFBamInt16TypeBuff.hpp>
+#include <cfbam/CFBamId16GenBuff.hpp>
+#include <cfbam/CFBamEnumDefBuff.hpp>
+#include <cfbam/CFBamEnumTypeBuff.hpp>
+#include <cfbam/CFBamInt16ColBuff.hpp>
+#include <cfbam/CFBamInt32DefBuff.hpp>
+#include <cfbam/CFBamInt32TypeBuff.hpp>
+#include <cfbam/CFBamId32GenBuff.hpp>
+#include <cfbam/CFBamInt32ColBuff.hpp>
+#include <cfbam/CFBamInt64DefBuff.hpp>
+#include <cfbam/CFBamInt64TypeBuff.hpp>
+#include <cfbam/CFBamId64GenBuff.hpp>
+#include <cfbam/CFBamInt64ColBuff.hpp>
+#include <cfbam/CFBamNmTokenDefBuff.hpp>
+#include <cfbam/CFBamNmTokenTypeBuff.hpp>
+#include <cfbam/CFBamNmTokenColBuff.hpp>
+#include <cfbam/CFBamNmTokensDefBuff.hpp>
+#include <cfbam/CFBamNmTokensTypeBuff.hpp>
+#include <cfbam/CFBamNmTokensColBuff.hpp>
+#include <cfbam/CFBamNumberDefBuff.hpp>
+#include <cfbam/CFBamNumberTypeBuff.hpp>
+#include <cfbam/CFBamNumberColBuff.hpp>
+#include <cfbam/CFBamStringDefBuff.hpp>
+#include <cfbam/CFBamStringTypeBuff.hpp>
+#include <cfbam/CFBamStringColBuff.hpp>
+#include <cfbam/CFBamTZDateDefBuff.hpp>
+#include <cfbam/CFBamTZDateTypeBuff.hpp>
+#include <cfbam/CFBamTZDateColBuff.hpp>
+#include <cfbam/CFBamTZTimeDefBuff.hpp>
+#include <cfbam/CFBamTZTimeTypeBuff.hpp>
+#include <cfbam/CFBamTZTimeColBuff.hpp>
+#include <cfbam/CFBamTZTimestampDefBuff.hpp>
+#include <cfbam/CFBamTZTimestampTypeBuff.hpp>
+#include <cfbam/CFBamTZTimestampColBuff.hpp>
+#include <cfbam/CFBamTextDefBuff.hpp>
+#include <cfbam/CFBamTextTypeBuff.hpp>
+#include <cfbam/CFBamTextColBuff.hpp>
+#include <cfbam/CFBamTimeDefBuff.hpp>
+#include <cfbam/CFBamTimeTypeBuff.hpp>
+#include <cfbam/CFBamTimeColBuff.hpp>
+#include <cfbam/CFBamTimestampDefBuff.hpp>
+#include <cfbam/CFBamTimestampTypeBuff.hpp>
+#include <cfbam/CFBamTimestampColBuff.hpp>
+#include <cfbam/CFBamTokenDefBuff.hpp>
+#include <cfbam/CFBamTokenTypeBuff.hpp>
+#include <cfbam/CFBamTokenColBuff.hpp>
+#include <cfbam/CFBamUInt16DefBuff.hpp>
+#include <cfbam/CFBamUInt16TypeBuff.hpp>
+#include <cfbam/CFBamUInt16ColBuff.hpp>
+#include <cfbam/CFBamUInt32DefBuff.hpp>
+#include <cfbam/CFBamUInt32TypeBuff.hpp>
+#include <cfbam/CFBamUInt32ColBuff.hpp>
+#include <cfbam/CFBamUInt64DefBuff.hpp>
+#include <cfbam/CFBamUInt64TypeBuff.hpp>
+#include <cfbam/CFBamUInt64ColBuff.hpp>
+#include <cfbam/CFBamUuidDefBuff.hpp>
+#include <cfbam/CFBamUuidTypeBuff.hpp>
+#include <cfbam/CFBamUuidGenBuff.hpp>
+#include <cfbam/CFBamUuidColBuff.hpp>
+#include <cfbam/CFBamTableColBuff.hpp>
+
+#include <cfbam/CFBamChainHBuff.hpp>
+#include <cfbam/CFBamEnumTagHBuff.hpp>
+#include <cfbam/CFBamIndexColHBuff.hpp>
+#include <cfbam/CFBamParamHBuff.hpp>
+#include <cfbam/CFBamRelationColHBuff.hpp>
+#include <cfbam/CFBamScopeHBuff.hpp>
+#include <cfbam/CFBamSchemaDefHBuff.hpp>
+#include <cfbam/CFBamSchemaRefHBuff.hpp>
+#include <cfbam/CFBamServerMethodHBuff.hpp>
+#include <cfbam/CFBamServerObjFuncHBuff.hpp>
+#include <cfbam/CFBamServerProcHBuff.hpp>
+#include <cfbam/CFBamServerListFuncHBuff.hpp>
+#include <cfbam/CFBamTableHBuff.hpp>
+#include <cfbam/CFBamClearDepHBuff.hpp>
+#include <cfbam/CFBamClearSubDep1HBuff.hpp>
+#include <cfbam/CFBamClearSubDep2HBuff.hpp>
+#include <cfbam/CFBamClearSubDep3HBuff.hpp>
+#include <cfbam/CFBamClearTopDepHBuff.hpp>
+#include <cfbam/CFBamDelDepHBuff.hpp>
+#include <cfbam/CFBamDelSubDep1HBuff.hpp>
+#include <cfbam/CFBamDelSubDep2HBuff.hpp>
+#include <cfbam/CFBamDelSubDep3HBuff.hpp>
+#include <cfbam/CFBamDelTopDepHBuff.hpp>
+#include <cfbam/CFBamIndexHBuff.hpp>
+#include <cfbam/CFBamPopDepHBuff.hpp>
+#include <cfbam/CFBamPopSubDep1HBuff.hpp>
+#include <cfbam/CFBamPopSubDep2HBuff.hpp>
+#include <cfbam/CFBamPopSubDep3HBuff.hpp>
+#include <cfbam/CFBamPopTopDepHBuff.hpp>
+#include <cfbam/CFBamRelationHBuff.hpp>
+#include <cfbam/CFBamValueHBuff.hpp>
+#include <cfbam/CFBamAtomHBuff.hpp>
+#include <cfbam/CFBamBlobDefHBuff.hpp>
+#include <cfbam/CFBamBlobTypeHBuff.hpp>
+#include <cfbam/CFBamBlobColHBuff.hpp>
+#include <cfbam/CFBamBoolDefHBuff.hpp>
+#include <cfbam/CFBamBoolTypeHBuff.hpp>
+#include <cfbam/CFBamBoolColHBuff.hpp>
+#include <cfbam/CFBamDateDefHBuff.hpp>
+#include <cfbam/CFBamDateTypeHBuff.hpp>
+#include <cfbam/CFBamDateColHBuff.hpp>
+#include <cfbam/CFBamDoubleDefHBuff.hpp>
+#include <cfbam/CFBamDoubleTypeHBuff.hpp>
+#include <cfbam/CFBamDoubleColHBuff.hpp>
+#include <cfbam/CFBamFloatDefHBuff.hpp>
+#include <cfbam/CFBamFloatTypeHBuff.hpp>
+#include <cfbam/CFBamFloatColHBuff.hpp>
+#include <cfbam/CFBamInt16DefHBuff.hpp>
+#include <cfbam/CFBamInt16TypeHBuff.hpp>
+#include <cfbam/CFBamId16GenHBuff.hpp>
+#include <cfbam/CFBamEnumDefHBuff.hpp>
+#include <cfbam/CFBamEnumTypeHBuff.hpp>
+#include <cfbam/CFBamInt16ColHBuff.hpp>
+#include <cfbam/CFBamInt32DefHBuff.hpp>
+#include <cfbam/CFBamInt32TypeHBuff.hpp>
+#include <cfbam/CFBamId32GenHBuff.hpp>
+#include <cfbam/CFBamInt32ColHBuff.hpp>
+#include <cfbam/CFBamInt64DefHBuff.hpp>
+#include <cfbam/CFBamInt64TypeHBuff.hpp>
+#include <cfbam/CFBamId64GenHBuff.hpp>
+#include <cfbam/CFBamInt64ColHBuff.hpp>
+#include <cfbam/CFBamNmTokenDefHBuff.hpp>
+#include <cfbam/CFBamNmTokenTypeHBuff.hpp>
+#include <cfbam/CFBamNmTokenColHBuff.hpp>
+#include <cfbam/CFBamNmTokensDefHBuff.hpp>
+#include <cfbam/CFBamNmTokensTypeHBuff.hpp>
+#include <cfbam/CFBamNmTokensColHBuff.hpp>
+#include <cfbam/CFBamNumberDefHBuff.hpp>
+#include <cfbam/CFBamNumberTypeHBuff.hpp>
+#include <cfbam/CFBamNumberColHBuff.hpp>
+#include <cfbam/CFBamStringDefHBuff.hpp>
+#include <cfbam/CFBamStringTypeHBuff.hpp>
+#include <cfbam/CFBamStringColHBuff.hpp>
+#include <cfbam/CFBamTZDateDefHBuff.hpp>
+#include <cfbam/CFBamTZDateTypeHBuff.hpp>
+#include <cfbam/CFBamTZDateColHBuff.hpp>
+#include <cfbam/CFBamTZTimeDefHBuff.hpp>
+#include <cfbam/CFBamTZTimeTypeHBuff.hpp>
+#include <cfbam/CFBamTZTimeColHBuff.hpp>
+#include <cfbam/CFBamTZTimestampDefHBuff.hpp>
+#include <cfbam/CFBamTZTimestampTypeHBuff.hpp>
+#include <cfbam/CFBamTZTimestampColHBuff.hpp>
+#include <cfbam/CFBamTextDefHBuff.hpp>
+#include <cfbam/CFBamTextTypeHBuff.hpp>
+#include <cfbam/CFBamTextColHBuff.hpp>
+#include <cfbam/CFBamTimeDefHBuff.hpp>
+#include <cfbam/CFBamTimeTypeHBuff.hpp>
+#include <cfbam/CFBamTimeColHBuff.hpp>
+#include <cfbam/CFBamTimestampDefHBuff.hpp>
+#include <cfbam/CFBamTimestampTypeHBuff.hpp>
+#include <cfbam/CFBamTimestampColHBuff.hpp>
+#include <cfbam/CFBamTokenDefHBuff.hpp>
+#include <cfbam/CFBamTokenTypeHBuff.hpp>
+#include <cfbam/CFBamTokenColHBuff.hpp>
+#include <cfbam/CFBamUInt16DefHBuff.hpp>
+#include <cfbam/CFBamUInt16TypeHBuff.hpp>
+#include <cfbam/CFBamUInt16ColHBuff.hpp>
+#include <cfbam/CFBamUInt32DefHBuff.hpp>
+#include <cfbam/CFBamUInt32TypeHBuff.hpp>
+#include <cfbam/CFBamUInt32ColHBuff.hpp>
+#include <cfbam/CFBamUInt64DefHBuff.hpp>
+#include <cfbam/CFBamUInt64TypeHBuff.hpp>
+#include <cfbam/CFBamUInt64ColHBuff.hpp>
+#include <cfbam/CFBamUuidDefHBuff.hpp>
+#include <cfbam/CFBamUuidTypeHBuff.hpp>
+#include <cfbam/CFBamUuidGenHBuff.hpp>
+#include <cfbam/CFBamUuidColHBuff.hpp>
+#include <cfbam/CFBamTableColHBuff.hpp>
+
+#include <cfbam/CFBamChainByTenantIdxKey.hpp>
+#include <cfbam/CFBamChainByChainTableIdxKey.hpp>
+#include <cfbam/CFBamChainByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamChainByUNameIdxKey.hpp>
+#include <cfbam/CFBamChainByPrevRelIdxKey.hpp>
+#include <cfbam/CFBamChainByNextRelIdxKey.hpp>
+#include <cfbam/CFBamEnumTagByEnumTagTenantIdxKey.hpp>
+#include <cfbam/CFBamEnumTagByEnumIdxKey.hpp>
+#include <cfbam/CFBamEnumTagByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamEnumTagByEnumNameIdxKey.hpp>
+#include <cfbam/CFBamEnumTagByPrevIdxKey.hpp>
+#include <cfbam/CFBamEnumTagByNextIdxKey.hpp>
+#include <cfbam/CFBamIndexColByUNameIdxKey.hpp>
+#include <cfbam/CFBamIndexColByIdxColTenantIdxKey.hpp>
+#include <cfbam/CFBamIndexColByIndexIdxKey.hpp>
+#include <cfbam/CFBamIndexColByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamIndexColByColIdxKey.hpp>
+#include <cfbam/CFBamIndexColByPrevIdxKey.hpp>
+#include <cfbam/CFBamIndexColByNextIdxKey.hpp>
+#include <cfbam/CFBamIndexColByIdxPrevIdxKey.hpp>
+#include <cfbam/CFBamIndexColByIdxNextIdxKey.hpp>
+#include <cfbam/CFBamParamByUNameIdxKey.hpp>
+#include <cfbam/CFBamParamByValTentIdxKey.hpp>
+#include <cfbam/CFBamParamByServerMethodIdxKey.hpp>
+#include <cfbam/CFBamParamByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamParamByServerTypeIdxKey.hpp>
+#include <cfbam/CFBamParamByPrevIdxKey.hpp>
+#include <cfbam/CFBamParamByNextIdxKey.hpp>
+#include <cfbam/CFBamParamByContPrevIdxKey.hpp>
+#include <cfbam/CFBamParamByContNextIdxKey.hpp>
+#include <cfbam/CFBamRelationColByUNameIdxKey.hpp>
+#include <cfbam/CFBamRelationColByRelColTenantIdxKey.hpp>
+#include <cfbam/CFBamRelationColByRelationIdxKey.hpp>
+#include <cfbam/CFBamRelationColByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamRelationColByFromColIdxKey.hpp>
+#include <cfbam/CFBamRelationColByToColIdxKey.hpp>
+#include <cfbam/CFBamRelationColByPrevIdxKey.hpp>
+#include <cfbam/CFBamRelationColByNextIdxKey.hpp>
+#include <cfbam/CFBamRelationColByRelPrevIdxKey.hpp>
+#include <cfbam/CFBamRelationColByRelNextIdxKey.hpp>
+#include <cfbam/CFBamScopeByTenantIdxKey.hpp>
+#include <cfbam/CFBamSchemaDefByCTenantIdxKey.hpp>
+#include <cfbam/CFBamSchemaDefByMinorVersionIdxKey.hpp>
+#include <cfbam/CFBamSchemaDefByUNameIdxKey.hpp>
+#include <cfbam/CFBamSchemaDefByAuthEMailIdxKey.hpp>
+#include <cfbam/CFBamSchemaDefByProjectURLIdxKey.hpp>
+#include <cfbam/CFBamSchemaDefByPubURIIdxKey.hpp>
+#include <cfbam/CFBamSchemaRefBySchemaIdxKey.hpp>
+#include <cfbam/CFBamSchemaRefByUNameIdxKey.hpp>
+#include <cfbam/CFBamSchemaRefByRefSchemaIdxKey.hpp>
+#include <cfbam/CFBamSchemaRefByPrevIdxKey.hpp>
+#include <cfbam/CFBamSchemaRefByNextIdxKey.hpp>
+#include <cfbam/CFBamServerMethodByUNameIdxKey.hpp>
+#include <cfbam/CFBamServerMethodByMethTableIdxKey.hpp>
+#include <cfbam/CFBamServerMethodByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamServerObjFuncByRetTblIdxKey.hpp>
+#include <cfbam/CFBamServerListFuncByRetTblIdxKey.hpp>
+#include <cfbam/CFBamTableBySchemaDefIdxKey.hpp>
+#include <cfbam/CFBamTableByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamTableByUNameIdxKey.hpp>
+#include <cfbam/CFBamTableBySchemaCdIdxKey.hpp>
+#include <cfbam/CFBamTableByPrimaryIndexIdxKey.hpp>
+#include <cfbam/CFBamTableByLookupIndexIdxKey.hpp>
+#include <cfbam/CFBamTableByAltIndexIdxKey.hpp>
+#include <cfbam/CFBamTableByQualTableIdxKey.hpp>
+#include <cfbam/CFBamClearDepByClearDepIdxKey.hpp>
+#include <cfbam/CFBamClearDepByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamClearSubDep1ByClearTopDepIdxKey.hpp>
+#include <cfbam/CFBamClearSubDep1ByUNameIdxKey.hpp>
+#include <cfbam/CFBamClearSubDep2ByClearSubDep1IdxKey.hpp>
+#include <cfbam/CFBamClearSubDep2ByUNameIdxKey.hpp>
+#include <cfbam/CFBamClearSubDep3ByClearSubDep2IdxKey.hpp>
+#include <cfbam/CFBamClearSubDep3ByUNameIdxKey.hpp>
+#include <cfbam/CFBamClearTopDepByClrTopDepTblIdxKey.hpp>
+#include <cfbam/CFBamClearTopDepByUNameIdxKey.hpp>
+#include <cfbam/CFBamClearTopDepByPrevIdxKey.hpp>
+#include <cfbam/CFBamClearTopDepByNextIdxKey.hpp>
+#include <cfbam/CFBamDelDepByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamDelDepByDelDepIdxKey.hpp>
+#include <cfbam/CFBamDelSubDep1ByDelTopDepIdxKey.hpp>
+#include <cfbam/CFBamDelSubDep1ByUNameIdxKey.hpp>
+#include <cfbam/CFBamDelSubDep2ByContDelDep1IdxKey.hpp>
+#include <cfbam/CFBamDelSubDep2ByUNameIdxKey.hpp>
+#include <cfbam/CFBamDelSubDep3ByDelSubDep2IdxKey.hpp>
+#include <cfbam/CFBamDelSubDep3ByUNameIdxKey.hpp>
+#include <cfbam/CFBamDelTopDepByDelTopDepTblIdxKey.hpp>
+#include <cfbam/CFBamDelTopDepByUNameIdxKey.hpp>
+#include <cfbam/CFBamDelTopDepByPrevIdxKey.hpp>
+#include <cfbam/CFBamDelTopDepByNextIdxKey.hpp>
+#include <cfbam/CFBamIndexByUNameIdxKey.hpp>
+#include <cfbam/CFBamIndexByIndexTenantIdxKey.hpp>
+#include <cfbam/CFBamIndexByIdxTableIdxKey.hpp>
+#include <cfbam/CFBamIndexByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamPopDepByRelationIdxKey.hpp>
+#include <cfbam/CFBamPopDepByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamPopSubDep1ByPopTopDepIdxKey.hpp>
+#include <cfbam/CFBamPopSubDep1ByUNameIdxKey.hpp>
+#include <cfbam/CFBamPopSubDep2ByPopSubDep1IdxKey.hpp>
+#include <cfbam/CFBamPopSubDep2ByUNameIdxKey.hpp>
+#include <cfbam/CFBamPopSubDep3ByPopSubDep2IdxKey.hpp>
+#include <cfbam/CFBamPopSubDep3ByUNameIdxKey.hpp>
+#include <cfbam/CFBamPopTopDepByContRelIdxKey.hpp>
+#include <cfbam/CFBamPopTopDepByUNameIdxKey.hpp>
+#include <cfbam/CFBamRelationByUNameIdxKey.hpp>
+#include <cfbam/CFBamRelationByRelnTenantIdxKey.hpp>
+#include <cfbam/CFBamRelationByRelTableIdxKey.hpp>
+#include <cfbam/CFBamRelationByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamRelationByFromKeyIdxKey.hpp>
+#include <cfbam/CFBamRelationByToTblIdxKey.hpp>
+#include <cfbam/CFBamRelationByToKeyIdxKey.hpp>
+#include <cfbam/CFBamRelationByNarrowedIdxKey.hpp>
+#include <cfbam/CFBamValueByUNameIdxKey.hpp>
+#include <cfbam/CFBamValueByValTentIdxKey.hpp>
+#include <cfbam/CFBamValueByScopeIdxKey.hpp>
+#include <cfbam/CFBamValueByDefSchemaIdxKey.hpp>
+#include <cfbam/CFBamValueByPrevIdxKey.hpp>
+#include <cfbam/CFBamValueByNextIdxKey.hpp>
+#include <cfbam/CFBamValueByContPrevIdxKey.hpp>
+#include <cfbam/CFBamValueByContNextIdxKey.hpp>
+#include <cfbam/CFBamBlobTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamBlobColByTableIdxKey.hpp>
+#include <cfbam/CFBamBoolTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamBoolColByTableIdxKey.hpp>
+#include <cfbam/CFBamDateTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamDateColByTableIdxKey.hpp>
+#include <cfbam/CFBamDoubleTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamDoubleColByTableIdxKey.hpp>
+#include <cfbam/CFBamFloatTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamFloatColByTableIdxKey.hpp>
+#include <cfbam/CFBamInt16TypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamId16GenByDispIdxKey.hpp>
+#include <cfbam/CFBamEnumTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamInt16ColByTableIdxKey.hpp>
+#include <cfbam/CFBamInt32TypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamId32GenByDispIdxKey.hpp>
+#include <cfbam/CFBamInt32ColByTableIdxKey.hpp>
+#include <cfbam/CFBamInt64TypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamId64GenByDispIdxKey.hpp>
+#include <cfbam/CFBamInt64ColByTableIdxKey.hpp>
+#include <cfbam/CFBamNmTokenTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamNmTokenColByTableIdxKey.hpp>
+#include <cfbam/CFBamNmTokensTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamNmTokensColByTableIdxKey.hpp>
+#include <cfbam/CFBamNumberTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamNumberColByTableIdxKey.hpp>
+#include <cfbam/CFBamStringTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamStringColByTableIdxKey.hpp>
+#include <cfbam/CFBamTZDateTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamTZDateColByTableIdxKey.hpp>
+#include <cfbam/CFBamTZTimeTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamTZTimeColByTableIdxKey.hpp>
+#include <cfbam/CFBamTZTimestampTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamTZTimestampColByTableIdxKey.hpp>
+#include <cfbam/CFBamTextTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamTextColByTableIdxKey.hpp>
+#include <cfbam/CFBamTimeTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamTimeColByTableIdxKey.hpp>
+#include <cfbam/CFBamTimestampTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamTimestampColByTableIdxKey.hpp>
+#include <cfbam/CFBamTokenTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamTokenColByTableIdxKey.hpp>
+#include <cfbam/CFBamUInt16TypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamUInt16ColByTableIdxKey.hpp>
+#include <cfbam/CFBamUInt32TypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamUInt32ColByTableIdxKey.hpp>
+#include <cfbam/CFBamUInt64TypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamUInt64ColByTableIdxKey.hpp>
+#include <cfbam/CFBamUuidTypeBySchemaIdxKey.hpp>
+#include <cfbam/CFBamUuidColByTableIdxKey.hpp>
+#include <cfbam/CFBamTableColByTableIdxKey.hpp>
+#include <cfbam/CFBamTableColByDataIdxKey.hpp>
+
+#include <cfbam/ICFBamChainTable.hpp>
+#include <cfbam/ICFBamClusterTable.hpp>
+#include <cfbam/ICFBamEnumTagTable.hpp>
+#include <cfbam/ICFBamHostNodeTable.hpp>
+#include <cfbam/ICFBamISOCcyTable.hpp>
+#include <cfbam/ICFBamISOCtryTable.hpp>
+#include <cfbam/ICFBamISOCtryCcyTable.hpp>
+#include <cfbam/ICFBamISOCtryLangTable.hpp>
+#include <cfbam/ICFBamISOLangTable.hpp>
+#include <cfbam/ICFBamISOTZoneTable.hpp>
+#include <cfbam/ICFBamIndexColTable.hpp>
+#include <cfbam/ICFBamLicenseTable.hpp>
+#include <cfbam/ICFBamMajorVersionTable.hpp>
+#include <cfbam/ICFBamMimeTypeTable.hpp>
+#include <cfbam/ICFBamMinorVersionTable.hpp>
+#include <cfbam/ICFBamParamTable.hpp>
+#include <cfbam/ICFBamRelationColTable.hpp>
+#include <cfbam/ICFBamScopeTable.hpp>
+#include <cfbam/ICFBamSchemaDefTable.hpp>
+#include <cfbam/ICFBamSchemaRefTable.hpp>
+#include <cfbam/ICFBamServerMethodTable.hpp>
+#include <cfbam/ICFBamServerObjFuncTable.hpp>
+#include <cfbam/ICFBamServerProcTable.hpp>
+#include <cfbam/ICFBamServerListFuncTable.hpp>
+#include <cfbam/ICFBamTableTable.hpp>
+#include <cfbam/ICFBamClearDepTable.hpp>
+#include <cfbam/ICFBamClearSubDep1Table.hpp>
+#include <cfbam/ICFBamClearSubDep2Table.hpp>
+#include <cfbam/ICFBamClearSubDep3Table.hpp>
+#include <cfbam/ICFBamClearTopDepTable.hpp>
+#include <cfbam/ICFBamDelDepTable.hpp>
+#include <cfbam/ICFBamDelSubDep1Table.hpp>
+#include <cfbam/ICFBamDelSubDep2Table.hpp>
+#include <cfbam/ICFBamDelSubDep3Table.hpp>
+#include <cfbam/ICFBamDelTopDepTable.hpp>
+#include <cfbam/ICFBamIndexTable.hpp>
+#include <cfbam/ICFBamPopDepTable.hpp>
+#include <cfbam/ICFBamPopSubDep1Table.hpp>
+#include <cfbam/ICFBamPopSubDep2Table.hpp>
+#include <cfbam/ICFBamPopSubDep3Table.hpp>
+#include <cfbam/ICFBamPopTopDepTable.hpp>
+#include <cfbam/ICFBamRelationTable.hpp>
+#include <cfbam/ICFBamSecAppTable.hpp>
+#include <cfbam/ICFBamSecDeviceTable.hpp>
+#include <cfbam/ICFBamSecFormTable.hpp>
+#include <cfbam/ICFBamSecGroupTable.hpp>
+#include <cfbam/ICFBamSecGroupFormTable.hpp>
+#include <cfbam/ICFBamSecGrpIncTable.hpp>
+#include <cfbam/ICFBamSecGrpMembTable.hpp>
+#include <cfbam/ICFBamSecSessionTable.hpp>
+#include <cfbam/ICFBamSecUserTable.hpp>
+#include <cfbam/ICFBamServiceTable.hpp>
+#include <cfbam/ICFBamServiceTypeTable.hpp>
+#include <cfbam/ICFBamSubProjectTable.hpp>
+#include <cfbam/ICFBamSysClusterTable.hpp>
+#include <cfbam/ICFBamTSecGroupTable.hpp>
+#include <cfbam/ICFBamTSecGrpIncTable.hpp>
+#include <cfbam/ICFBamTSecGrpMembTable.hpp>
+#include <cfbam/ICFBamTenantTable.hpp>
+#include <cfbam/ICFBamTldTable.hpp>
+#include <cfbam/ICFBamTopDomainTable.hpp>
+#include <cfbam/ICFBamTopProjectTable.hpp>
+#include <cfbam/ICFBamURLProtocolTable.hpp>
+#include <cfbam/ICFBamValueTable.hpp>
+#include <cfbam/ICFBamAtomTable.hpp>
+#include <cfbam/ICFBamBlobDefTable.hpp>
+#include <cfbam/ICFBamBlobTypeTable.hpp>
+#include <cfbam/ICFBamBlobColTable.hpp>
+#include <cfbam/ICFBamBoolDefTable.hpp>
+#include <cfbam/ICFBamBoolTypeTable.hpp>
+#include <cfbam/ICFBamBoolColTable.hpp>
+#include <cfbam/ICFBamDateDefTable.hpp>
+#include <cfbam/ICFBamDateTypeTable.hpp>
+#include <cfbam/ICFBamDateColTable.hpp>
+#include <cfbam/ICFBamDoubleDefTable.hpp>
+#include <cfbam/ICFBamDoubleTypeTable.hpp>
+#include <cfbam/ICFBamDoubleColTable.hpp>
+#include <cfbam/ICFBamFloatDefTable.hpp>
+#include <cfbam/ICFBamFloatTypeTable.hpp>
+#include <cfbam/ICFBamFloatColTable.hpp>
+#include <cfbam/ICFBamInt16DefTable.hpp>
+#include <cfbam/ICFBamInt16TypeTable.hpp>
+#include <cfbam/ICFBamId16GenTable.hpp>
+#include <cfbam/ICFBamEnumDefTable.hpp>
+#include <cfbam/ICFBamEnumTypeTable.hpp>
+#include <cfbam/ICFBamInt16ColTable.hpp>
+#include <cfbam/ICFBamInt32DefTable.hpp>
+#include <cfbam/ICFBamInt32TypeTable.hpp>
+#include <cfbam/ICFBamId32GenTable.hpp>
+#include <cfbam/ICFBamInt32ColTable.hpp>
+#include <cfbam/ICFBamInt64DefTable.hpp>
+#include <cfbam/ICFBamInt64TypeTable.hpp>
+#include <cfbam/ICFBamId64GenTable.hpp>
+#include <cfbam/ICFBamInt64ColTable.hpp>
+#include <cfbam/ICFBamNmTokenDefTable.hpp>
+#include <cfbam/ICFBamNmTokenTypeTable.hpp>
+#include <cfbam/ICFBamNmTokenColTable.hpp>
+#include <cfbam/ICFBamNmTokensDefTable.hpp>
+#include <cfbam/ICFBamNmTokensTypeTable.hpp>
+#include <cfbam/ICFBamNmTokensColTable.hpp>
+#include <cfbam/ICFBamNumberDefTable.hpp>
+#include <cfbam/ICFBamNumberTypeTable.hpp>
+#include <cfbam/ICFBamNumberColTable.hpp>
+#include <cfbam/ICFBamStringDefTable.hpp>
+#include <cfbam/ICFBamStringTypeTable.hpp>
+#include <cfbam/ICFBamStringColTable.hpp>
+#include <cfbam/ICFBamTZDateDefTable.hpp>
+#include <cfbam/ICFBamTZDateTypeTable.hpp>
+#include <cfbam/ICFBamTZDateColTable.hpp>
+#include <cfbam/ICFBamTZTimeDefTable.hpp>
+#include <cfbam/ICFBamTZTimeTypeTable.hpp>
+#include <cfbam/ICFBamTZTimeColTable.hpp>
+#include <cfbam/ICFBamTZTimestampDefTable.hpp>
+#include <cfbam/ICFBamTZTimestampTypeTable.hpp>
+#include <cfbam/ICFBamTZTimestampColTable.hpp>
+#include <cfbam/ICFBamTextDefTable.hpp>
+#include <cfbam/ICFBamTextTypeTable.hpp>
+#include <cfbam/ICFBamTextColTable.hpp>
+#include <cfbam/ICFBamTimeDefTable.hpp>
+#include <cfbam/ICFBamTimeTypeTable.hpp>
+#include <cfbam/ICFBamTimeColTable.hpp>
+#include <cfbam/ICFBamTimestampDefTable.hpp>
+#include <cfbam/ICFBamTimestampTypeTable.hpp>
+#include <cfbam/ICFBamTimestampColTable.hpp>
+#include <cfbam/ICFBamTokenDefTable.hpp>
+#include <cfbam/ICFBamTokenTypeTable.hpp>
+#include <cfbam/ICFBamTokenColTable.hpp>
+#include <cfbam/ICFBamUInt16DefTable.hpp>
+#include <cfbam/ICFBamUInt16TypeTable.hpp>
+#include <cfbam/ICFBamUInt16ColTable.hpp>
+#include <cfbam/ICFBamUInt32DefTable.hpp>
+#include <cfbam/ICFBamUInt32TypeTable.hpp>
+#include <cfbam/ICFBamUInt32ColTable.hpp>
+#include <cfbam/ICFBamUInt64DefTable.hpp>
+#include <cfbam/ICFBamUInt64TypeTable.hpp>
+#include <cfbam/ICFBamUInt64ColTable.hpp>
+#include <cfbam/ICFBamUuidDefTable.hpp>
+#include <cfbam/ICFBamUuidTypeTable.hpp>
+#include <cfbam/ICFBamUuidGenTable.hpp>
+#include <cfbam/ICFBamUuidColTable.hpp>
+#include <cfbam/ICFBamTableColTable.hpp>

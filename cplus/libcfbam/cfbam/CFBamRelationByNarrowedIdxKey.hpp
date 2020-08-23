@@ -1,0 +1,142 @@
+#pragma once
+
+// Description: C++18 specification for a Relation by NarrowedIdx index key object.
+
+/*
+ *	org.msscf.msscf.CFBam
+ *
+ *	Copyright (c) 2020 Mark Stephen Sobkow
+ *	
+ *	MSS Code Factory CFBam 2.13 Business Application Model
+ *	
+ *	Copyright 2020 Mark Stephen Sobkow
+ *	
+ *		This file is part of MSS Code Factory.
+ *	
+ *		MSS Code Factory is available under dual commercial license from Mark Stephen
+ *		Sobkow, or under the terms of the GNU General Public License, Version 3
+ *		or later.
+ *	
+ *	    MSS Code Factory is free software: you can redistribute it and/or modify
+ *	    it under the terms of the GNU General Public License as published by
+ *	    the Free Software Foundation, either version 3 of the License, or
+ *	    (at your option) any later version.
+ *	
+ *	    MSS Code Factory is distributed in the hope that it will be useful,
+ *	    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *	    GNU General Public License for more details.
+ *	
+ *	    You should have received a copy of the GNU General Public License
+ *	    along with MSS Code Factory.  If not, see <https://www.gnu.org/licenses/>.
+ *	
+ *	Donations to support MSS Code Factory can be made at
+ *	https://www.paypal.com/paypalme2/MarkSobkow
+ *	
+ *	Please contact Mark Stephen Sobkow at msobkow@sasktel.net for commercial licensing.
+ *
+ *	Manufactured by MSS Code Factory 2.12
+ */
+#include <cflib/ICFLibPublic.hpp>
+#include <cfbam/ICFBamSchema.hpp>
+
+namespace cfbam {
+
+	class CFBamRelationBuff;
+	class CFBamRelationHBuff;
+
+	class CFBamRelationByNarrowedIdxKey
+	{
+	public:
+		static const std::string CLASS_NAME;
+		static const std::string S_VALUE;
+		static const std::string S_VALUE_LENGTH;
+	protected:
+		cflib::CFLibNullableInt64 optionalNarrowedTenantId;
+		cflib::CFLibNullableInt64 optionalNarrowedId;
+	public:
+		CFBamRelationByNarrowedIdxKey();
+		CFBamRelationByNarrowedIdxKey( const CFBamRelationByNarrowedIdxKey& src );
+		virtual ~CFBamRelationByNarrowedIdxKey();
+
+		virtual const int64_t getOptionalNarrowedTenantIdValue() const;
+		virtual const int64_t* getOptionalNarrowedTenantIdReference() const;
+		virtual const bool isOptionalNarrowedTenantIdNull() const;
+		virtual void setOptionalNarrowedTenantIdNull();
+		virtual void setOptionalNarrowedTenantIdValue( const int64_t value );
+
+		virtual const int64_t getOptionalNarrowedIdValue() const;
+		virtual const int64_t* getOptionalNarrowedIdReference() const;
+		virtual const bool isOptionalNarrowedIdNull() const;
+		virtual void setOptionalNarrowedIdNull();
+		virtual void setOptionalNarrowedIdValue( const int64_t value );
+
+		virtual size_t hashCode() const;
+
+		std::string toString();
+
+		bool operator <( const CFBamRelationByNarrowedIdxKey& rhs );
+		bool operator <( const CFBamRelationHBuff& rhs );
+		bool operator <( const CFBamRelationBuff& rhs );
+
+		bool operator <=( const CFBamRelationByNarrowedIdxKey& rhs );
+		bool operator <=( const CFBamRelationHBuff& rhs );
+		bool operator <=( const CFBamRelationBuff& rhs );
+
+		bool operator ==( const CFBamRelationByNarrowedIdxKey& rhs );
+		bool operator ==( const CFBamRelationHBuff& rhs );
+		bool operator ==( const CFBamRelationBuff& rhs );
+
+		bool operator !=( const CFBamRelationByNarrowedIdxKey& rhs );
+		bool operator !=( const CFBamRelationHBuff& rhs );
+		bool operator !=( const CFBamRelationBuff& rhs );
+
+		bool operator >=( const CFBamRelationByNarrowedIdxKey& rhs );
+		bool operator >=( const CFBamRelationHBuff& rhs );
+		bool operator >=( const CFBamRelationBuff& rhs );
+
+		bool operator >( const CFBamRelationByNarrowedIdxKey& rhs );
+		bool operator >( const CFBamRelationHBuff& rhs );
+		bool operator >( const CFBamRelationBuff& rhs );
+		cfbam::CFBamRelationByNarrowedIdxKey operator =( cfbam::CFBamRelationByNarrowedIdxKey& src );
+		cfbam::CFBamRelationByNarrowedIdxKey operator =( cfbam::CFBamRelationBuff& src );
+		cfbam::CFBamRelationByNarrowedIdxKey operator =( cfbam::CFBamRelationHBuff& src );
+};
+}
+
+namespace std {
+
+	bool operator <(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationByNarrowedIdxKey& rhs );
+	bool operator <(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationHBuff& rhs );
+	bool operator <(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationBuff& rhs );
+
+	bool operator <=(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationByNarrowedIdxKey& rhs );
+	bool operator <=(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationHBuff& rhs );
+	bool operator <=(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationBuff& rhs );
+
+	bool operator ==(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationByNarrowedIdxKey& rhs );
+	bool operator ==(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationHBuff& rhs );
+	bool operator ==(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationBuff& rhs );
+
+	bool operator !=(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationByNarrowedIdxKey& rhs );
+	bool operator !=(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationHBuff& rhs );
+	bool operator !=(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationBuff& rhs );
+
+	bool operator >=(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationByNarrowedIdxKey& rhs );
+	bool operator >=(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationHBuff& rhs );
+	bool operator >=(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationBuff& rhs );
+
+	bool operator >(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationByNarrowedIdxKey& rhs );
+	bool operator >(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationHBuff& rhs );
+	bool operator >(const  cfbam::CFBamRelationByNarrowedIdxKey& lhs, const cfbam::CFBamRelationBuff& rhs );
+
+	template<> struct hash<cfbam::CFBamRelationByNarrowedIdxKey> {
+		typedef cfbam::CFBamRelationByNarrowedIdxKey argument_type;
+		typedef size_t result_type;
+		result_type operator()(argument_type const& s) const {
+			return( s.hashCode() );
+		}
+	};
+
+}
+
