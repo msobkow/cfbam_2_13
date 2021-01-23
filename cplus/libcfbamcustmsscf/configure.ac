@@ -1,4 +1,4 @@
-AC_INIT([msobkow CFBam Custom MssCF],2.13.11182,[msobkow@sasktel.net],[libcfbamcustmsscf],[http://msobkow.github.com/])
+AC_INIT([msobkow CFBam Custom MssCF],2.13.11182,[mark.sobkow@gmail.com],[libcfbamcustmsscf],[http://msobkow.github.com/])
 AC_COPYRIGHT([Copyright (c) 2020 Mark Stephen Sobkow])
 AC_REVISION(2.13.11182)
 AM_INIT_AUTOMAKE([foreign])

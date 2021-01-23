@@ -1,4 +1,4 @@
-AC_INIT([msscf CFBam SAX Loader],2.13.11195,[msobkow@sasktel.net],[libcfbamsaxloader],[http://msscf.org/])
+AC_INIT([msscf CFBam SAX Loader],2.13.11195,[mark.sobkow@gmail.com],[libcfbamsaxloader],[http://msscode.com/])
 AC_COPYRIGHT([Copyright (c) 2020 Mark Stephen Sobkow])
 AC_REVISION(2.13.11195)
 AM_INIT_AUTOMAKE([foreign])
